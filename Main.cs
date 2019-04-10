@@ -43,13 +43,19 @@ namespace CallofDuty4CompileTools
         /// </summary>
         public void GetMaps()
         {
-            string[] maps = Directory.GetFiles(GetRootLocation() + @"\map_source\", "*.map", SearchOption.TopDirectoryOnly);
-            MapsListBox.Items.Clear();
-            foreach (string map in maps)
+            if (Directory.Exists(GetRootLocation() + @"\map_source\"))
             {
-                FormConsole.WriteLine(map, Color.LightGreen);
-                MapsListBox.Items.Add(Path.GetFileName(map));
+                string[] maps = Directory.GetFiles(GetRootLocation() + @"\map_source\", "*.map", SearchOption.TopDirectoryOnly);
+                MapsListBox.Items.Clear();
+                foreach (string map in maps)
+                {
+                    FormConsole.WriteLine(map, Color.LightGreen);
+                    MapsListBox.Items.Add(Path.GetFileName(map));
+                }
             }
+
+            else
+                FormConsole.WriteLine("'/map_source/' Directory not Found! Make sure you've specified your game's root path, and installed the Call of Duty 4 Mod Tools!", Color.Red);
         }
 
         /// <summary>
@@ -97,10 +103,16 @@ namespace CallofDuty4CompileTools
         /// <param name="e">The event which has been triggered.</param>
         private void OpenRadiantButton_Click(object sender, EventArgs e)
         {
-            BinProcess.StartInfo.FileName = GetRootLocation() + @"\bin\CoD4Radiant.exe";
-            BinProcess.StartInfo.WorkingDirectory = GetRootLocation() + @"\bin\";
-            BinProcess.StartInfo.UseShellExecute = true;
-            BinProcess.Start();
+            if (Directory.Exists(GetRootLocation() + @"\bin\"))
+            {
+                BinProcess.StartInfo.FileName = GetRootLocation() + @"\bin\CoD4Radiant.exe";
+                BinProcess.StartInfo.WorkingDirectory = GetRootLocation() + @"\bin\";
+                BinProcess.StartInfo.UseShellExecute = true;
+                BinProcess.Start();
+            }
+
+            else
+                FormConsole.WriteLine("'/bin/' Directory not Found! Make sure you've specified your game's root path, and installed the Call of Duty 4 Mod Tools!", Color.Red);
         }
 
         /// <summary>
@@ -110,10 +122,16 @@ namespace CallofDuty4CompileTools
         /// <param name="e">The event which has been triggered.</param>
         private void OpenASMButton_Click(object sender, EventArgs e)
         {
-            BinProcess.StartInfo.FileName = GetRootLocation() + @"\bin\asset_manager.exe";
-            BinProcess.StartInfo.WorkingDirectory = GetRootLocation() + @"\bin\";
-            BinProcess.StartInfo.UseShellExecute = true;
-            BinProcess.Start();
+            if (Directory.Exists(GetRootLocation() + @"\bin\"))
+            {
+                BinProcess.StartInfo.FileName = GetRootLocation() + @"\bin\asset_manager.exe";
+                BinProcess.StartInfo.WorkingDirectory = GetRootLocation() + @"\bin\";
+                BinProcess.StartInfo.UseShellExecute = true;
+                BinProcess.Start();
+            }
+
+            else
+                FormConsole.WriteLine("'/bin/' Directory not Found! Make sure you've specified your game's root path, and installed the Call of Duty 4 Mod Tools!", Color.Red);
         }
 
         /// <summary>
@@ -123,10 +141,16 @@ namespace CallofDuty4CompileTools
         /// <param name="e">The event which has been triggered.</param>
         private void OpenFXButton_Click(object sender, EventArgs e)
         {
-            BinProcess.StartInfo.FileName = GetRootLocation() + @"\bin\CoD4EffectsEd.exe";
-            BinProcess.StartInfo.WorkingDirectory = GetRootLocation() + @"\bin\";
-            BinProcess.StartInfo.UseShellExecute = true;
-            BinProcess.Start();
+            if (Directory.Exists(GetRootLocation() + @"\bin\"))
+            {
+                BinProcess.StartInfo.FileName = GetRootLocation() + @"\bin\CoD4EffectsEd.exe";
+                BinProcess.StartInfo.WorkingDirectory = GetRootLocation() + @"\bin\";
+                BinProcess.StartInfo.UseShellExecute = true;
+                BinProcess.Start();
+            }
+
+            else
+                FormConsole.WriteLine("'/bin/' Directory not Found! Make sure you've specified your game's root path, and installed the Call of Duty 4 Mod Tools!", Color.Red);
         }
 
         /// <summary>
@@ -169,6 +193,7 @@ namespace CallofDuty4CompileTools
                    BSPArgs = CustomCommandLineTextBox == null ? null : CustomCommandLineTextBox.Text,
                    LightArgs = CustomLightOptionsTextBox == null ? null : CustomLightOptionsTextBox.Text;
 
+            if (MapsListBox.SelectedItem == null) { FormConsole.WriteLine("Warning: No Map was Selected. Please Select a Map!", Color.Yellow); return; }
             CompileBSP.Start(BSPPath, MapLocation, GetRootLocation(), MapName, BSPArgs, LightArgs, CompileBSPCheckBox.Checked, CompileLightingCheckBox.Checked, CompilePathsCheckBox.Checked);
         }
 
@@ -192,8 +217,11 @@ namespace CallofDuty4CompileTools
         /// </summary>
         /// <param name="sender">The Object which triggered the event.</param>
         /// <param name="e">The event which has been triggered.</param>
-        private void BuildFFButton_Click(object sender, EventArgs e) =>
+        private void BuildFFButton_Click(object sender, EventArgs e)
+        {
+            if (MapsListBox.SelectedItem == null) { FormConsole.WriteLine("Warning: No Map was Selected. Please Select a Map!", Color.Yellow); return; }
             BuildFF.Start(MapsListBox.SelectedIndex > -1 ? Path.GetFileNameWithoutExtension(MapsListBox.SelectedItem.ToString()) : null);
+        }
 
         /// <summary>
         /// This method saves the settings for the selected map to 'MapName.settings', which can be located in @'../Call of Duty 4/bin/CoD4CompileTools/'.

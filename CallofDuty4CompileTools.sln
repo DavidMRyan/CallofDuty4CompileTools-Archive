@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2046
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.156
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallofDuty4CompileTools", "CallofDuty4CompileTools\CallofDuty4CompileTools.csproj", "{33DABCAD-C717-4518-A71E-8EDD643DF484}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallofDuty4CompileTools", "CallofDuty4CompileTools.csproj", "{7532FE95-52B3-44A7-B4DB-DC6BA09A2D34}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{33DABCAD-C717-4518-A71E-8EDD643DF484}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{33DABCAD-C717-4518-A71E-8EDD643DF484}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{33DABCAD-C717-4518-A71E-8EDD643DF484}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{33DABCAD-C717-4518-A71E-8EDD643DF484}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7532FE95-52B3-44A7-B4DB-DC6BA09A2D34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7532FE95-52B3-44A7-B4DB-DC6BA09A2D34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7532FE95-52B3-44A7-B4DB-DC6BA09A2D34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7532FE95-52B3-44A7-B4DB-DC6BA09A2D34}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {5BE9A97C-F374-4AEF-8701-F5FD36805A3B}
+		SolutionGuid = {5482A5B4-5B31-4252-8D31-64FA3796E473}
 	EndGlobalSection
 EndGlobal

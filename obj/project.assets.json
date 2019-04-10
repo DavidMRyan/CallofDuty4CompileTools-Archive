@@ -1,0 +1,355 @@
+{
+  "version": 3,
+  "targets": {
+    ".NETFramework,Version=v4.6.1": {
+      "Newtonsoft.Json/12.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/net45/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Newtonsoft.Json.dll": {}
+        }
+      },
+      "System/4.1.311.2": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "(, )"
+        },
+        "compile": {
+          "lib/net451/SXN.Core.dll": {}
+        },
+        "runtime": {
+          "lib/net451/SXN.Core.dll": {}
+        }
+      },
+      "System.Windows.Forms/4.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/System.Windows.Forms.dll": {}
+        },
+        "runtime": {
+          "lib/System.Windows.Forms.dll": {}
+        }
+      },
+      "WindowsForm.Console/1.9.30.1256": {
+        "type": "package",
+        "dependencies": {
+          "System": "4.0.0",
+          "System.Windows.Forms": "4.0.0"
+        },
+        "compile": {
+          "lib/net461/WindowsForm.Console.dll": {}
+        },
+        "runtime": {
+          "lib/net461/WindowsForm.Console.dll": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.6.1/win": {
+      "Newtonsoft.Json/12.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/net45/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Newtonsoft.Json.dll": {}
+        }
+      },
+      "System/4.1.311.2": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "(, )"
+        },
+        "compile": {
+          "lib/net451/SXN.Core.dll": {}
+        },
+        "runtime": {
+          "lib/net451/SXN.Core.dll": {}
+        }
+      },
+      "System.Windows.Forms/4.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/System.Windows.Forms.dll": {}
+        },
+        "runtime": {
+          "lib/System.Windows.Forms.dll": {}
+        }
+      },
+      "WindowsForm.Console/1.9.30.1256": {
+        "type": "package",
+        "dependencies": {
+          "System": "4.0.0",
+          "System.Windows.Forms": "4.0.0"
+        },
+        "compile": {
+          "lib/net461/WindowsForm.Console.dll": {}
+        },
+        "runtime": {
+          "lib/net461/WindowsForm.Console.dll": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.6.1/win-x64": {
+      "Newtonsoft.Json/12.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/net45/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Newtonsoft.Json.dll": {}
+        }
+      },
+      "System/4.1.311.2": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "(, )"
+        },
+        "compile": {
+          "lib/net451/SXN.Core.dll": {}
+        },
+        "runtime": {
+          "lib/net451/SXN.Core.dll": {}
+        }
+      },
+      "System.Windows.Forms/4.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/System.Windows.Forms.dll": {}
+        },
+        "runtime": {
+          "lib/System.Windows.Forms.dll": {}
+        }
+      },
+      "WindowsForm.Console/1.9.30.1256": {
+        "type": "package",
+        "dependencies": {
+          "System": "4.0.0",
+          "System.Windows.Forms": "4.0.0"
+        },
+        "compile": {
+          "lib/net461/WindowsForm.Console.dll": {}
+        },
+        "runtime": {
+          "lib/net461/WindowsForm.Console.dll": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.6.1/win-x86": {
+      "Newtonsoft.Json/12.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/net45/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Newtonsoft.Json.dll": {}
+        }
+      },
+      "System/4.1.311.2": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "(, )"
+        },
+        "compile": {
+          "lib/net451/SXN.Core.dll": {}
+        },
+        "runtime": {
+          "lib/net451/SXN.Core.dll": {}
+        }
+      },
+      "System.Windows.Forms/4.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/System.Windows.Forms.dll": {}
+        },
+        "runtime": {
+          "lib/System.Windows.Forms.dll": {}
+        }
+      },
+      "WindowsForm.Console/1.9.30.1256": {
+        "type": "package",
+        "dependencies": {
+          "System": "4.0.0",
+          "System.Windows.Forms": "4.0.0"
+        },
+        "compile": {
+          "lib/net461/WindowsForm.Console.dll": {}
+        },
+        "runtime": {
+          "lib/net461/WindowsForm.Console.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Newtonsoft.Json/12.0.1": {
+      "sha512": "pBR3wCgYWZGiaZDYP+HHYnalVnPJlpP1q55qvVb+adrDHmFMDc1NAKio61xTwftK3Pw5h7TZJPJEEVMd6ty8rg==",
+      "type": "package",
+      "path": "newtonsoft.json/12.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "lib/net20/Newtonsoft.Json.dll",
+        "lib/net20/Newtonsoft.Json.pdb",
+        "lib/net20/Newtonsoft.Json.xml",
+        "lib/net35/Newtonsoft.Json.dll",
+        "lib/net35/Newtonsoft.Json.pdb",
+        "lib/net35/Newtonsoft.Json.xml",
+        "lib/net40/Newtonsoft.Json.dll",
+        "lib/net40/Newtonsoft.Json.pdb",
+        "lib/net40/Newtonsoft.Json.xml",
+        "lib/net45/Newtonsoft.Json.dll",
+        "lib/net45/Newtonsoft.Json.pdb",
+        "lib/net45/Newtonsoft.Json.xml",
+        "lib/netstandard1.0/Newtonsoft.Json.dll",
+        "lib/netstandard1.0/Newtonsoft.Json.pdb",
+        "lib/netstandard1.0/Newtonsoft.Json.xml",
+        "lib/netstandard1.3/Newtonsoft.Json.dll",
+        "lib/netstandard1.3/Newtonsoft.Json.pdb",
+        "lib/netstandard1.3/Newtonsoft.Json.xml",
+        "lib/netstandard2.0/Newtonsoft.Json.dll",
+        "lib/netstandard2.0/Newtonsoft.Json.pdb",
+        "lib/netstandard2.0/Newtonsoft.Json.xml",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.pdb",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.xml",
+        "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.pdb",
+        "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.xml",
+        "newtonsoft.json.12.0.1.nupkg.sha512",
+        "newtonsoft.json.nuspec"
+      ]
+    },
+    "System/4.1.311.2": {
+      "sha512": "P4cOoxreiNkBkP+Ir8W6GXxW2/5eneF9F1pAmTWHv3GEl1uLy65YDQAWfaLo4X5Tl+VFhl890dwD0exo+wzm8Q==",
+      "type": "package",
+      "path": "system/4.1.311.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net451/SXN.Core.dll",
+        "lib/net451/SXN.Core.xml",
+        "system.4.1.311.2.nupkg.sha512",
+        "system.nuspec"
+      ]
+    },
+    "System.Windows.Forms/4.0.0": {
+      "sha512": "WL3QPG1q88aIWO0JPOlkCeyNE+FK4ufSKY5j6J6qAFQyfCFiiOYxi8RAhev9H0CS/wmKbIK8qr8xZBod85oWKw==",
+      "type": "package",
+      "path": "system.windows.forms/4.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/System.Windows.Forms.dll",
+        "system.windows.forms.4.0.0.nupkg.sha512",
+        "system.windows.forms.nuspec"
+      ]
+    },
+    "WindowsForm.Console/1.9.30.1256": {
+      "sha512": "Tw6Ok6PoU1gIhph6e1czvg2SSj4vGdazsXW2EIEIoDazrfTOqHnfcU1T5wQdPVEIHTnxJjpdHORXhHk/6MEt5A==",
+      "type": "package",
+      "path": "windowsform.console/1.9.30.1256",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net45/WindowsForm.Console.dll",
+        "lib/net45/WindowsForm.Console.pdb",
+        "lib/net45/WindowsForm.Console.xml",
+        "lib/net451/WindowsForm.Console.dll",
+        "lib/net451/WindowsForm.Console.pdb",
+        "lib/net451/WindowsForm.Console.xml",
+        "lib/net452/WindowsForm.Console.dll",
+        "lib/net452/WindowsForm.Console.pdb",
+        "lib/net452/WindowsForm.Console.xml",
+        "lib/net46/WindowsForm.Console.dll",
+        "lib/net46/WindowsForm.Console.pdb",
+        "lib/net46/WindowsForm.Console.xml",
+        "lib/net461/WindowsForm.Console.dll",
+        "lib/net461/WindowsForm.Console.pdb",
+        "lib/net461/WindowsForm.Console.xml",
+        "lib/net462/WindowsForm.Console.dll",
+        "lib/net462/WindowsForm.Console.pdb",
+        "lib/net462/WindowsForm.Console.xml",
+        "windowsform.console.1.9.30.1256.nupkg.sha512",
+        "windowsform.console.nuspec"
+      ]
+    }
+  },
+  "projectFileDependencyGroups": {
+    ".NETFramework,Version=v4.6.1": [
+      "Newtonsoft.Json >= 12.0.1",
+      "WindowsForm.Console >= 1.9.30.1256"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\David\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "D:\\Projects\\CallofDuty4CompileTools\\CallofDuty4CompileTools.csproj",
+      "projectName": "CallofDuty4CompileTools",
+      "projectPath": "D:\\Projects\\CallofDuty4CompileTools\\CallofDuty4CompileTools.csproj",
+      "packagesPath": "C:\\Users\\David\\.nuget\\packages\\",
+      "outputPath": "D:\\Projects\\CallofDuty4CompileTools\\obj\\",
+      "projectStyle": "PackageReference",
+      "skipContentFileWrite": true,
+      "configFilePaths": [
+        "C:\\Users\\David\\AppData\\Roaming\\NuGet\\NuGet.Config"
+      ],
+      "originalTargetFrameworks": [
+        "net461"
+      ],
+      "sources": {
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net461": {
+          "projectReferences": {}
+        }
+      }
+    },
+    "frameworks": {
+      "net461": {
+        "dependencies": {
+          "Newtonsoft.Json": {
+            "target": "Package",
+            "version": "[12.0.1, )"
+          },
+          "WindowsForm.Console": {
+            "target": "Package",
+            "version": "[1.9.30.1256, )"
+          }
+        }
+      }
+    },
+    "runtimes": {
+      "win": {
+        "#import": []
+      },
+      "win-x64": {
+        "#import": []
+      },
+      "win-x86": {
+        "#import": []
+      }
+    }
+  },
+  "logs": [
+    {
+      "code": "NU1603",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "WindowsForm.Console 1.9.30.1256 depends on System (>= 4.0.0) but System 4.0.0 was not found. An approximate best match of System 4.1.311.2 was resolved.",
+      "libraryId": "System",
+      "targetGraphs": [
+        ".NETFramework,Version=v4.6.1",
+        ".NETFramework,Version=v4.6.1/win",
+        ".NETFramework,Version=v4.6.1/win-x64",
+        ".NETFramework,Version=v4.6.1/win-x86"
+      ]
+    }
+  ]
+}

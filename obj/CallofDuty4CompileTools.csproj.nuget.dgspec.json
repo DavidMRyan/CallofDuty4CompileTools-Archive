@@ -1,0 +1,59 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\Projects\\CallofDuty4CompileTools\\CallofDuty4CompileTools.csproj": {}
+  },
+  "projects": {
+    "D:\\Projects\\CallofDuty4CompileTools\\CallofDuty4CompileTools.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Projects\\CallofDuty4CompileTools\\CallofDuty4CompileTools.csproj",
+        "projectName": "CallofDuty4CompileTools",
+        "projectPath": "D:\\Projects\\CallofDuty4CompileTools\\CallofDuty4CompileTools.csproj",
+        "packagesPath": "C:\\Users\\David\\.nuget\\packages\\",
+        "outputPath": "D:\\Projects\\CallofDuty4CompileTools\\obj\\",
+        "projectStyle": "PackageReference",
+        "skipContentFileWrite": true,
+        "configFilePaths": [
+          "C:\\Users\\David\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net461"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net461": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net461": {
+          "dependencies": {
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "WindowsForm.Console": {
+              "target": "Package",
+              "version": "[1.9.30.1256, )"
+            }
+          }
+        }
+      },
+      "runtimes": {
+        "win": {
+          "#import": []
+        },
+        "win-x64": {
+          "#import": []
+        },
+        "win-x86": {
+          "#import": []
+        }
+      }
+    }
+  }
+}
