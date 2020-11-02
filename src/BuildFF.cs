@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Drawing;
+﻿using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CallofDuty4CompileTools.src
 {
@@ -18,14 +12,14 @@ namespace CallofDuty4CompileTools.src
         /// </summary>
         public static void Start(string MapName)
         {
-            Main.StaticConsoleInstance.WriteLine(".\n.\n###########################################\n\t\tBUILDING FAST FILES\n###########################################\n.\n.", Color.Beige);
+            Main.StaticConsoleInstance.WriteLine("\nBuilding Fast Files\n--------------------------------------------------\n");
 
-            LinkerPC.StartInfo.FileName = Main.GetRootLocation() + @"\bin\linker_pc.exe";
-            LinkerPC.StartInfo.WorkingDirectory = Main.GetRootLocation() + @"\bin";
+            LinkerPC.StartInfo.FileName = Utility.GetRootLocation() + @"bin\linker_pc.exe";
+            LinkerPC.StartInfo.WorkingDirectory = Utility.GetRootLocation() + @"bin";
             LinkerPC.StartInfo.CreateNoWindow = true;
             LinkerPC.StartInfo.UseShellExecute = false;
-            LinkerPC.StartInfo.RedirectStandardOutput = true;
             LinkerPC.StartInfo.Arguments = string.Format("{0} {1}", MapName, MapName + "_load");
+            LinkerPC.StartInfo.RedirectStandardOutput = true;
             LinkerPC.Start();
 
             StreamReader Reader = LinkerPC.StandardOutput;
@@ -36,7 +30,7 @@ namespace CallofDuty4CompileTools.src
             Reader.Dispose();
             LinkerPC.Close();
 
-            Main.StaticConsoleInstance.WriteLine(".\n.\n###########################################\n\t\t\tDONE\n###########################################\n.\n.", Color.Beige);
+            Main.StaticConsoleInstance.WriteLine("\nFinished\n--------------------------------------------------\n");
         }
     }
 }

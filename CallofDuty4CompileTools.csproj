@@ -69,6 +69,7 @@
       <DependentUpon>RootPathPopupMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="src\RunSelectedMap.cs" />
+    <Compile Include="src\Utility.cs" />
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>

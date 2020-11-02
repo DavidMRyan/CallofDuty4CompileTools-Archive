@@ -284,25 +284,27 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\David\\.nuget\\packages\\": {}
+    "C:\\Users\\david\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects\\CallofDuty4CompileTools\\CallofDuty4CompileTools.csproj",
+      "projectUniqueName": "E:\\Projects\\CallofDuty4CompileTools\\CallofDuty4CompileTools.csproj",
       "projectName": "CallofDuty4CompileTools",
-      "projectPath": "D:\\Projects\\CallofDuty4CompileTools\\CallofDuty4CompileTools.csproj",
-      "packagesPath": "C:\\Users\\David\\.nuget\\packages\\",
-      "outputPath": "D:\\Projects\\CallofDuty4CompileTools\\obj\\",
+      "projectPath": "E:\\Projects\\CallofDuty4CompileTools\\CallofDuty4CompileTools.csproj",
+      "packagesPath": "C:\\Users\\david\\.nuget\\packages\\",
+      "outputPath": "E:\\Projects\\CallofDuty4CompileTools\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "configFilePaths": [
-        "C:\\Users\\David\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\david\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net461"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

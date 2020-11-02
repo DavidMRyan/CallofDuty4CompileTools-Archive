@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "dgSpecHash": "biCLUIfc6BbdxOGBgWfhzU+WvS4fwF1fVfVtPKOgGGZkKk2BGYQs3bK/V0hYudrvV23LBTe/9BZPVMdr2y/evg==",
+  "success": true,
+  "projectFilePath": "E:\\Projects\\CallofDuty4CompileTools\\CallofDuty4CompileTools.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\david\\.nuget\\packages\\newtonsoft.json\\12.0.1\\newtonsoft.json.12.0.1.nupkg.sha512",
+    "C:\\Users\\david\\.nuget\\packages\\system\\4.1.311.2\\system.4.1.311.2.nupkg.sha512",
+    "C:\\Users\\david\\.nuget\\packages\\system.windows.forms\\4.0.0\\system.windows.forms.4.0.0.nupkg.sha512",
+    "C:\\Users\\david\\.nuget\\packages\\windowsform.console\\1.9.30.1256\\windowsform.console.1.9.30.1256.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1603",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "WindowsForm.Console 1.9.30.1256 depends on System (>= 4.0.0) but System 4.0.0 was not found. An approximate best match of System 4.1.311.2 was resolved.",
+      "libraryId": "System",
+      "targetGraphs": [
+        ".NETFramework,Version=v4.6.1",
+        ".NETFramework,Version=v4.6.1/win",
+        ".NETFramework,Version=v4.6.1/win-x64",
+        ".NETFramework,Version=v4.6.1/win-x86"
+      ]
+    }
+  ]
+}

@@ -22,7 +22,7 @@ namespace CallofDuty4CompileTools
         {
             string SubKey = RootPathTextBox.Text;
             string KeyName = @"HKEY_CURRENT_USER\Software\Call of Duty 4 Compile Tools";
-            Registry.SetValue(KeyName, "RootPath", SubKey);
+            Registry.SetValue(KeyName, "RootPath", SubKey + @"\");
             PopupMenu.PopUp.Hide();
         }
 

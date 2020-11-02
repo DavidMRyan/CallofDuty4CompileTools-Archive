@@ -1,17 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using CallofDuty4CompileTools.src;
-using Microsoft.Win32;
 using WindowsForm.Console;
+
+using CallofDuty4CompileTools.src;
 
 namespace CallofDuty4CompileTools
 {
@@ -25,37 +19,10 @@ namespace CallofDuty4CompileTools
         public Main()
         {
             InitializeComponent();
-            CheckForIllegalCrossThreadCalls = false; // This is important for async access to thread.
+            CheckForIllegalCrossThreadCalls = false;
             StaticConsoleInstance = FormConsole;
             StaticMapListBoxInstance = MapsListBox;
             MaximizeBox = false;
-        }
-
-        /// <summary>
-        /// Gets a registry value, containing the path of the user's Call of Duty 4 root directory.
-        /// </summary>
-        /// <returns>The value of the registry containing the game's path.</returns>
-        public static string GetRootLocation() =>
-            (string)Registry.GetValue(@"HKEY_CURRENT_USER\Software\Call of Duty 4 Compile Tools", "RootPath", null);
-
-        /// <summary>
-        /// Gets all of the '.map' files located in the root directory's '/map_source/' sub directory.
-        /// </summary>
-        public void GetMaps()
-        {
-            if (Directory.Exists(GetRootLocation() + @"\map_source\"))
-            {
-                string[] maps = Directory.GetFiles(GetRootLocation() + @"\map_source\", "*.map", SearchOption.TopDirectoryOnly);
-                MapsListBox.Items.Clear();
-                foreach (string map in maps)
-                {
-                    FormConsole.WriteLine(map, Color.LightGreen);
-                    MapsListBox.Items.Add(Path.GetFileName(map));
-                }
-            }
-
-            else
-                FormConsole.WriteLine("'/map_source/' Directory not Found! Make sure you've specified your game's root path, and installed the Call of Duty 4 Mod Tools!", Color.Red);
         }
 
         /// <summary>
@@ -65,8 +32,8 @@ namespace CallofDuty4CompileTools
         /// <param name="e">The event which has been triggered.</param>
         public void onChange(object sender, EventArgs e)
         {
-            if (MapsListBox.SelectedItem != null) HandleSettingsCSV(MapsListBox.SelectedItem.ToString());
-            else return;
+            if (MapsListBox.SelectedItem != null)
+                SaveSettingsCSV(MapsListBox.SelectedItem.ToString());
         }
 
         /// <summary>
@@ -91,9 +58,8 @@ namespace CallofDuty4CompileTools
 
         private void RefreshMapsButton_Click(object sender, EventArgs e)
         {
-            // FormConsole.Clear();
-            FormConsole.WriteLine("Refreshing Map List...\n=================================================", Color.LightGreen);
-            GetMaps();
+            FormConsole.WriteLine("Refreshing Map List...\n=================================================");
+            Utility.GetMaps();
         }
 
         /// <summary>
@@ -103,16 +69,8 @@ namespace CallofDuty4CompileTools
         /// <param name="e">The event which has been triggered.</param>
         private void OpenRadiantButton_Click(object sender, EventArgs e)
         {
-            if (Directory.Exists(GetRootLocation() + @"\bin\"))
-            {
-                BinProcess.StartInfo.FileName = GetRootLocation() + @"\bin\CoD4Radiant.exe";
-                BinProcess.StartInfo.WorkingDirectory = GetRootLocation() + @"\bin\";
-                BinProcess.StartInfo.UseShellExecute = true;
-                BinProcess.Start();
-            }
-
-            else
-                FormConsole.WriteLine("'/bin/' Directory not Found! Make sure you've specified your game's root path, and installed the Call of Duty 4 Mod Tools!", Color.Red);
+            BinProcess.Initialize("CoD4Radiant.exe", Utility.GetRootLocation() + @"bin\");
+            BinProcess.Start();
         }
 
         /// <summary>
@@ -122,16 +80,8 @@ namespace CallofDuty4CompileTools
         /// <param name="e">The event which has been triggered.</param>
         private void OpenASMButton_Click(object sender, EventArgs e)
         {
-            if (Directory.Exists(GetRootLocation() + @"\bin\"))
-            {
-                BinProcess.StartInfo.FileName = GetRootLocation() + @"\bin\asset_manager.exe";
-                BinProcess.StartInfo.WorkingDirectory = GetRootLocation() + @"\bin\";
-                BinProcess.StartInfo.UseShellExecute = true;
-                BinProcess.Start();
-            }
-
-            else
-                FormConsole.WriteLine("'/bin/' Directory not Found! Make sure you've specified your game's root path, and installed the Call of Duty 4 Mod Tools!", Color.Red);
+            BinProcess.Initialize("asset_manager.exe", Utility.GetRootLocation() + @"bin\");
+            BinProcess.Start();
         }
 
         /// <summary>
@@ -141,16 +91,8 @@ namespace CallofDuty4CompileTools
         /// <param name="e">The event which has been triggered.</param>
         private void OpenFXButton_Click(object sender, EventArgs e)
         {
-            if (Directory.Exists(GetRootLocation() + @"\bin\"))
-            {
-                BinProcess.StartInfo.FileName = GetRootLocation() + @"\bin\CoD4EffectsEd.exe";
-                BinProcess.StartInfo.WorkingDirectory = GetRootLocation() + @"\bin\";
-                BinProcess.StartInfo.UseShellExecute = true;
-                BinProcess.Start();
-            }
-
-            else
-                FormConsole.WriteLine("'/bin/' Directory not Found! Make sure you've specified your game's root path, and installed the Call of Duty 4 Mod Tools!", Color.Red);
+            BinProcess.Initialize("CoD4EffectsEd.exe", Utility.GetRootLocation() + @"bin\");
+            BinProcess.Start();
         }
 
         /// <summary>
@@ -160,13 +102,20 @@ namespace CallofDuty4CompileTools
         /// <param name="e">The event which has been triggered.</param>
         private void RunSelectedMapButton_Click(object sender, EventArgs e)
         {
-            string Map = MapsListBox.SelectedIndex < 0 ? null : MapsListBox.SelectedItem.ToString(),
-                   CustomArgs = CustomCommandLineCheckBox.Checked ? MapCustomCommandLineTextBox.Text : null,
-                   isMpMap;
+            string Map = MapsListBox.SelectedIndex < 0 ? null : MapsListBox.SelectedItem.ToString();
+            string CustomArgs = MapCustomCommandLineTextBox.Text;
+            bool isMultiplayerMap;
 
-            if (MapsListBox.SelectedItem == null) { FormConsole.WriteLine("Warning: No Map was Selected. Please Select a Map!", Color.Yellow); return; }
-            else isMpMap = MapsListBox.SelectedItem.ToString().Contains("mp_") ? "1" : "0";
-            RunSelectedMap.Start(GetRootLocation(), Map, isMpMap, EnableDeveloperCheckBox.Checked, EnableDeveloperScriptCheckBox.Checked, EnableCheatsCheckBox.Checked, CustomArgs);
+            if (MapsListBox.SelectedItem == null)
+            {
+                FormConsole.WriteLine("Warning: No Map was Selected. Please Select a Map!", Color.Yellow);
+                return;
+            }
+            else
+                isMultiplayerMap = MapsListBox.SelectedItem.ToString().Contains("mp_");
+
+            RunSelectedMap.Start(Map, isMultiplayerMap, EnableDeveloperCheckBox.Checked,
+                EnableDeveloperScriptCheckBox.Checked, EnableCheatsCheckBox.Checked, CustomArgs);
         }
 
         /// <summary>
@@ -176,8 +125,10 @@ namespace CallofDuty4CompileTools
         /// <param name="e">The event which has been triggered.</param>
         private void MapsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (MapsListBox.SelectedIndex > -1) LoadSettings(MapsListBox.SelectedItem.ToString());
-            else { FormConsole.WriteLine("Error: Couldn't load settings for " + MapsListBox.SelectedItem.ToString(), Color.Red); return; }
+            if (MapsListBox.SelectedIndex > -1)
+                LoadSettings(MapsListBox.SelectedItem.ToString());
+            else
+                FormConsole.WriteLine("Warning: Couldn't load settings for " + MapsListBox.SelectedItem.ToString(), Color.Yellow);
         }
 
         /// <summary>
@@ -187,14 +138,20 @@ namespace CallofDuty4CompileTools
         /// <param name="e">The event which has been triggered.</param>
         private void CompileBSPButton_Click(object sender, EventArgs e)
         {
-            string MapName = MapsListBox.SelectedIndex > -1 ? Path.GetFileNameWithoutExtension(MapsListBox.SelectedItem.ToString()) : null,
-                   BSPPath = GetRootLocation() + @"\raw\maps\mp\" + MapName + ".d3dbsp",
-                   MapLocation = GetRootLocation() + @"\map_source\" + MapName + ".map",
-                   BSPArgs = CustomCommandLineTextBox == null ? null : CustomCommandLineTextBox.Text,
-                   LightArgs = CustomLightOptionsTextBox == null ? null : CustomLightOptionsTextBox.Text;
+            string MapName = MapsListBox.SelectedIndex > -1 ? Path.GetFileNameWithoutExtension(MapsListBox.SelectedItem.ToString()) : null;
+            string BSPPath = Utility.GetRootLocation() + @"raw\maps\mp\" + MapName + ".d3dbsp";
+            string MapLocation = Utility.GetRootLocation() + @"map_source\" + MapName + ".map";
+            string BSPArgs = CustomCommandLineTextBox.Text;
+            string LightArgs = CustomLightOptionsTextBox.Text;
 
-            if (MapsListBox.SelectedItem == null) { FormConsole.WriteLine("Warning: No Map was Selected. Please Select a Map!", Color.Yellow); return; }
-            CompileBSP.Start(BSPPath, MapLocation, GetRootLocation(), MapName, BSPArgs, LightArgs, CompileBSPCheckBox.Checked, CompileLightingCheckBox.Checked, CompilePathsCheckBox.Checked);
+            if (MapsListBox.SelectedItem == null)
+            {
+                FormConsole.WriteLine("Warning: No Map was Selected. Please Select a Map!", Color.Yellow);
+                return;
+            }
+
+            CompileBSP.Start(BSPPath, MapLocation, Utility.GetRootLocation(), MapName, BSPArgs,
+                LightArgs, CompileBSPCheckBox.Checked, CompileLightingCheckBox.Checked, CompilePathsCheckBox.Checked);
         }
 
         /// <summary>
@@ -204,12 +161,19 @@ namespace CallofDuty4CompileTools
         /// <param name="e">The event which has been triggered.</param>
         private void CompileReflectionsButton_Click(object sender, EventArgs e)
         {
-            string MapName = MapsListBox.SelectedIndex > 0 ? Path.GetFileNameWithoutExtension(MapsListBox.SelectedItem.ToString()) : null,
-                   isMpMap;
+            string MapName = MapsListBox.SelectedIndex > 0 ?
+                Path.GetFileNameWithoutExtension(MapsListBox.SelectedItem.ToString()) : null;
+            bool isMultiplayerMap;
 
-            if (MapsListBox.SelectedItem == null) { FormConsole.WriteLine("Warning: No Map was Selected. Please Select a Map!", Color.Yellow); return; }
-            else isMpMap = MapsListBox.SelectedItem.ToString().Contains("mp_") ? "1" : "0";
-            CompileReflections.Start(GetRootLocation(), MapName, isMpMap);
+            if (MapsListBox.SelectedItem == null)
+            {
+                FormConsole.WriteLine("Warning: No Map was Selected. Please Select a Map!", Color.Yellow);
+                return;
+            }
+            else
+                isMultiplayerMap = MapsListBox.SelectedItem.ToString().Contains("mp_");
+
+            CompileReflections.Start(Utility.GetRootLocation(), MapName, isMultiplayerMap);
         }
 
         /// <summary>
@@ -219,21 +183,27 @@ namespace CallofDuty4CompileTools
         /// <param name="e">The event which has been triggered.</param>
         private void BuildFFButton_Click(object sender, EventArgs e)
         {
-            if (MapsListBox.SelectedItem == null) { FormConsole.WriteLine("Warning: No Map was Selected. Please Select a Map!", Color.Yellow); return; }
-            BuildFF.Start(MapsListBox.SelectedIndex > -1 ? Path.GetFileNameWithoutExtension(MapsListBox.SelectedItem.ToString()) : null);
+            if (MapsListBox.SelectedItem == null)
+            {
+                FormConsole.WriteLine("Warning: No Map was Selected. Please Select a Map!", Color.Yellow);
+                return;
+            }
+
+            BuildFF.Start(MapsListBox.SelectedIndex > -1 ?
+                Path.GetFileNameWithoutExtension(MapsListBox.SelectedItem.ToString()) : null);
         }
 
         /// <summary>
         /// This method saves the settings for the selected map to 'MapName.settings', which can be located in @'../Call of Duty 4/bin/CoD4CompileTools/'.
         /// </summary>
         /// <param name="MapName">The name of the map who's settings will be saved.</param>
-        private void HandleSettingsCSV(string MapName)
+        private void SaveSettingsCSV(string MapName)
         {
-            string SettingsPath = GetRootLocation() + @"\bin\CoD4CompileTools",
-                   SettingsFileName = MapName.Substring(0, MapName.Length - 4);
+            string SettingsPath = Utility.GetRootLocation() + @"bin\CoD4CompileTools\";
+            string SettingsFileName = MapName.Substring(0, MapName.Length - 4);
 
-            File.WriteAllLines(SettingsPath + @"\" + SettingsFileName + ".settings",
-                new string[] 
+            File.WriteAllLines(SettingsPath + SettingsFileName + ".settings",
+                new string[]
                 {
                     "bsp," + CompileBSPCheckBox.Checked.ToString(),
                     "light," + CompileLightingCheckBox.Checked.ToString(),
@@ -273,8 +243,8 @@ namespace CallofDuty4CompileTools
         /// <param name="MapName">The name of the map who's settings will be loaded.</param>
         public void LoadSettings(string MapName)
         {
-            string SettingsPath = GetRootLocation() + @"\bin\CoD4CompileTools",
-                   SettingsFileName = MapName.Substring(0, MapName.Length - 4);
+            string SettingsPath = Utility.GetRootLocation() + @"bin\CoD4CompileTools\";
+            string SettingsFileName = MapName.Substring(0, MapName.Length - 4);
 
             CheckBox[] CheckBoxes = new CheckBox[] 
             {
@@ -312,15 +282,18 @@ namespace CallofDuty4CompileTools
                 MapCustomCommandLineTextBox
             };
 
-            if (File.Exists(SettingsPath + @"\" + SettingsFileName + ".settings"))
+            if (File.Exists(SettingsPath + SettingsFileName + ".settings"))
             {
-                string[] Settings = File.ReadAllLines(SettingsPath + @"\" + SettingsFileName + ".settings");
-                int tickBoxIndex = 0,
-                    textBoxIndex = 0;
+                string[] Settings = File.ReadAllLines(SettingsPath + SettingsFileName + ".settings");
+                int tickBoxIndex = 0;
+                int textBoxIndex = 0;
+
                 foreach (string Setting in Settings)
                 {
                     string[] token = Setting.Split(',');
-                    if (token.Length < 2) continue;
+                    if (token.Length < 2)
+                        continue;
+
                     if (bool.TryParse(token[1], out bool isChecked))
                     {
                         CheckBoxes[tickBoxIndex].Checked = isChecked;
@@ -335,7 +308,8 @@ namespace CallofDuty4CompileTools
                 }
             }
 
-            else FormConsole.WriteLine("Error: Couldn't find file \'" + SettingsPath + @"\" + SettingsFileName + ".settings" + "\'", Color.Red);
+            else
+                FormConsole.WriteLine("Warning: Couldn't find file \'" + SettingsPath + SettingsFileName + ".settings" + "\'", Color.Yellow);
         }
     }
 }

@@ -12,9 +12,9 @@ namespace CallofDuty4CompileTools.src
 {
     class CompileBSP
     {
-        public static Process CoD4Map = new Process(),
-                              CoD4Rad = new Process(),
-                              SPTool = new Process();
+        public static Process CoD4Map = new Process();
+        public static Process CoD4Rad = new Process();
+        public static Process SPTool = new Process();
 
         /// <summary>
         /// This method starts the compile process for the selected map's '.d3dbsp' file, for use in game.
@@ -35,16 +35,17 @@ namespace CallofDuty4CompileTools.src
             {
                 if(Main.StaticMapListBoxInstance.SelectedItem != null)
                 {
-                    Main.StaticConsoleInstance.WriteLine(".\n.\n###########################################\n\t\tCOMPILING BSP\n###########################################\n.\n.", Color.Beige);
-                    if (!File.Exists(Main.GetRootLocation() + @"\raw\maps\mp\" + MapName + ".map"))
-                        File.Copy(MapSourcePath, Main.GetRootLocation() + @"\raw\maps\mp\" + MapName + ".map");
+                    Main.StaticConsoleInstance.WriteLine("\nCompiling BSP\n--------------------------------------------------\n");
+                    if (!File.Exists(Utility.GetRootLocation() + @"raw\maps\mp\" + MapName + ".map"))
+                        File.Copy(MapSourcePath, Utility.GetRootLocation() + @"raw\maps\mp\" + MapName + ".map");
 
-                    CoD4Map.StartInfo.FileName = Main.GetRootLocation() + @"\bin\cod4map.exe";
-                    CoD4Map.StartInfo.WorkingDirectory = Main.GetRootLocation() + @"\raw\maps\mp";
+                    CoD4Map.StartInfo.FileName = Utility.GetRootLocation() + @"bin\cod4map.exe";
+                    CoD4Map.StartInfo.WorkingDirectory = Utility.GetRootLocation() + @"raw\maps\mp";
                     CoD4Map.StartInfo.CreateNoWindow = true;
                     CoD4Map.StartInfo.UseShellExecute = false;
                     CoD4Map.StartInfo.RedirectStandardOutput = true;
-                    CoD4Map.StartInfo.Arguments = string.Format("-platform pc -loadFrom \"{0}\" {1} \"{2}\"", MapSourcePath, BSPArgs, Path.GetFileNameWithoutExtension(BSPPath));
+                    CoD4Map.StartInfo.Arguments = string.Format("-platform pc -loadFrom \"{0}\" {1} \"{2}\"", 
+                        MapSourcePath, BSPArgs, Path.GetFileNameWithoutExtension(BSPPath));
                     CoD4Map.Start();
 
                     StreamReader Reader = CoD4Map.StandardOutput;
@@ -55,23 +56,30 @@ namespace CallofDuty4CompileTools.src
                     Reader.Dispose();
                     CoD4Map.Close();
                 }
-
-                else { Main.StaticConsoleInstance.WriteLine("Warning: No Map was Selected. Please Select a Map!", Color.Yellow); return; }
+                else
+                {
+                    Main.StaticConsoleInstance.WriteLine("Warning: No Map was Selected. Please Select a Map!", Color.Yellow);
+                    return;
+                }
             }
 
             // Handle Light Compilation
             if (isCompileLightChecked)
             {
-                Main.StaticConsoleInstance.WriteLine(".\n.\n###########################################\n\t\tCOMPILING LIGHTING\n###########################################\n.\n.", Color.Beige);
+                Main.StaticConsoleInstance.WriteLine("\nCompiling Lighting\n--------------------------------------------------\n");
                 if (File.Exists(Path.GetFileNameWithoutExtension(MapSourcePath) + ".grid"))
-                    File.Copy(Path.GetFileNameWithoutExtension(MapSourcePath) + ".grid", Path.GetFileNameWithoutExtension(BSPPath) + ".grid");
+                {
+                    File.Copy(Path.GetFileNameWithoutExtension(MapSourcePath) + ".grid",
+                        Path.GetFileNameWithoutExtension(BSPPath) + ".grid");
+                }
 
-                CoD4Rad.StartInfo.FileName = Main.GetRootLocation() + @"\bin\cod4rad.exe";
-                CoD4Rad.StartInfo.WorkingDirectory = Main.GetRootLocation() + @"\raw\maps\mp";
+                CoD4Rad.StartInfo.FileName = Utility.GetRootLocation() + @"bin\cod4rad.exe";
+                CoD4Rad.StartInfo.WorkingDirectory = Utility.GetRootLocation() + @"raw\maps\mp";
                 CoD4Rad.StartInfo.CreateNoWindow = true;
                 CoD4Rad.StartInfo.UseShellExecute = false;
                 CoD4Rad.StartInfo.RedirectStandardOutput = true;
-                CoD4Rad.StartInfo.Arguments = string.Format("-platform pc {0} \"{1}\"", LightArgs, Path.GetFileNameWithoutExtension(BSPPath));
+                CoD4Rad.StartInfo.Arguments = string.Format("-platform pc {0} \"{1}\"",
+                    LightArgs, Path.GetFileNameWithoutExtension(BSPPath));
                 CoD4Rad.Start();
 
                 StreamReader Reader = CoD4Rad.StandardOutput;
@@ -84,24 +92,33 @@ namespace CallofDuty4CompileTools.src
             }
 
             string[] DelSearchPatterns = new string[] { ".map", ".d3dprt", ".d3dpoly", ".vclog", ".grid"};
-            List<string> FilesToDelete = Directory.GetFiles(Main.GetRootLocation() + @"\raw\maps\mp\", "*.*")
+            List<string> FilesToDelete = Directory.GetFiles(Utility.GetRootLocation() + @"raw\maps\mp\", "*.*")
                     .Where(item => DelSearchPatterns.Any(format => Regex.IsMatch(item, format + "$"))).ToList();
+
             foreach (string file in FilesToDelete ?? Enumerable.Empty<string>())
-                if (File.Exists(file)) File.Delete(file);
+            {
+                if (File.Exists(file))
+                    File.Delete(file);
+            }
 
             if (File.Exists(Path.GetFileNameWithoutExtension(BSPPath) + ".lin"))
-                File.Move(Path.GetFileNameWithoutExtension(BSPPath) + ".lin", Path.GetFileNameWithoutExtension(MapSourcePath) + ".lin");
+            {
+                File.Move(Path.GetFileNameWithoutExtension(BSPPath) + ".lin",
+                    Path.GetFileNameWithoutExtension(MapSourcePath) + ".lin");
+            }
 
             // Handle Path Compiliation
             if(isCompilePathsChecked)
             {
-                Main.StaticConsoleInstance.WriteLine(".\n.\n###########################################\n\t\tCOMPILING PATHS\n###########################################\n.\n.", Color.Beige);
-                SPTool.StartInfo.FileName = Main.GetRootLocation() + @"\bin\sp_tool.exe";
-                SPTool.StartInfo.WorkingDirectory = Main.GetRootLocation();
+                Main.StaticConsoleInstance.WriteLine("\nCompiling Paths\n--------------------------------------------------\n");
+                
+                SPTool.StartInfo.FileName = Utility.GetRootLocation() + @"bin\sp_tool.exe";
+                SPTool.StartInfo.WorkingDirectory = Utility.GetRootLocation();
                 SPTool.StartInfo.CreateNoWindow = true;
                 SPTool.StartInfo.UseShellExecute = false;
                 SPTool.StartInfo.RedirectStandardOutput = true;
-                SPTool.StartInfo.Arguments = string.Format("+set r_fullscreen 0 +set logfile 2 +set monkeytoy 0 +set com_introplayed 1 +set usefastfile 0 +set g_connectpaths 2 +devmap {0}", MapName);
+                SPTool.StartInfo.Arguments = string.Format("+set r_fullscreen 0 +set logfile 2 +set monkeytoy 0 " +
+                    "+set com_introplayed 1 +set usefastfile 0 +set g_connectpaths 2 +devmap {0}", MapName);
                 SPTool.Start();
 
                 StreamReader Reader = SPTool.StandardOutput;
@@ -113,7 +130,7 @@ namespace CallofDuty4CompileTools.src
                 SPTool.Close();
             }
 
-            Main.StaticConsoleInstance.WriteLine(".\n.\n###########################################\n\t\t\tDONE\n###########################################\n.\n.", Color.Beige);
+            Main.StaticConsoleInstance.WriteLine("\nFinished\n--------------------------------------------------\n");
         }
     }
 }
