@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 
 namespace CallofDuty4CompileTools.src
@@ -12,7 +13,7 @@ namespace CallofDuty4CompileTools.src
         /// </summary>
         public static void Start(string MapName)
         {
-            Main.StaticConsoleInstance.WriteLine("\nBuilding Fast Files\n--------------------------------------------------\n");
+            Main.StaticConsoleInstance.WriteOutputLn("\nBuilding Fast Files\n--------------------------------------------------", Color.Green);
 
             LinkerPC.StartInfo.FileName = Utility.GetRootLocation() + @"bin\linker_pc.exe";
             LinkerPC.StartInfo.WorkingDirectory = Utility.GetRootLocation() + @"bin";
@@ -24,13 +25,13 @@ namespace CallofDuty4CompileTools.src
 
             StreamReader Reader = LinkerPC.StandardOutput;
             while (!Reader.EndOfStream)
-                Main.StaticConsoleInstance.WriteLine(Reader.ReadLine());
+                Main.StaticConsoleInstance.WriteOutputLn(Reader.ReadLine());
 
             Reader.Close();
             Reader.Dispose();
             LinkerPC.Close();
 
-            Main.StaticConsoleInstance.WriteLine("\nFinished\n--------------------------------------------------\n");
+            Main.StaticConsoleInstance.WriteOutputLn("\nFinished\n--------------------------------------------------\n", Color.Green);
         }
     }
 }

@@ -33,9 +33,9 @@ namespace CallofDuty4CompileTools.src
             // Handle BSP Compilation
             if (isCompileBSPChecked)
             {
-                if(Main.StaticMapListBoxInstance.SelectedItem != null)
+                if(Main.StaticMapComboBoxInstance.SelectedItem != null)
                 {
-                    Main.StaticConsoleInstance.WriteLine("\nCompiling BSP\n--------------------------------------------------\n");
+                    Main.StaticConsoleInstance.WriteOutputLn("\nCompiling BSP\n--------------------------------------------------", Color.Green);
                     if (!File.Exists(Utility.GetRootLocation() + @"raw\maps\mp\" + MapName + ".map"))
                         File.Copy(MapSourcePath, Utility.GetRootLocation() + @"raw\maps\mp\" + MapName + ".map");
 
@@ -50,7 +50,7 @@ namespace CallofDuty4CompileTools.src
 
                     StreamReader Reader = CoD4Map.StandardOutput;
                     while(!Reader.EndOfStream)
-                        Main.StaticConsoleInstance.WriteLine(Reader.ReadLine());
+                        Main.StaticConsoleInstance.WriteOutputLn(Reader.ReadLine());
                         
                     Reader.Close();
                     Reader.Dispose();
@@ -58,7 +58,7 @@ namespace CallofDuty4CompileTools.src
                 }
                 else
                 {
-                    Main.StaticConsoleInstance.WriteLine("Warning: No Map was Selected. Please Select a Map!", Color.Yellow);
+                    Main.StaticConsoleInstance.WriteOutputLn("Warning: No Map was Selected. Please Select a Map!", Color.Yellow);
                     return;
                 }
             }
@@ -66,7 +66,7 @@ namespace CallofDuty4CompileTools.src
             // Handle Light Compilation
             if (isCompileLightChecked)
             {
-                Main.StaticConsoleInstance.WriteLine("\nCompiling Lighting\n--------------------------------------------------\n");
+                Main.StaticConsoleInstance.WriteOutputLn("\nCompiling Lighting\n--------------------------------------------------", Color.Green);
                 if (File.Exists(Path.GetFileNameWithoutExtension(MapSourcePath) + ".grid"))
                 {
                     File.Copy(Path.GetFileNameWithoutExtension(MapSourcePath) + ".grid",
@@ -84,7 +84,7 @@ namespace CallofDuty4CompileTools.src
 
                 StreamReader Reader = CoD4Rad.StandardOutput;
                 while(!Reader.EndOfStream)
-                    Main.StaticConsoleInstance.WriteLine(Reader.ReadLine());
+                    Main.StaticConsoleInstance.WriteOutputLn(Reader.ReadLine());
 
                 Reader.Close();
                 Reader.Dispose();
@@ -110,7 +110,7 @@ namespace CallofDuty4CompileTools.src
             // Handle Path Compiliation
             if(isCompilePathsChecked)
             {
-                Main.StaticConsoleInstance.WriteLine("\nCompiling Paths\n--------------------------------------------------\n");
+                Main.StaticConsoleInstance.WriteOutputLn("\nCompiling Paths\n--------------------------------------------------", Color.Green);
                 
                 SPTool.StartInfo.FileName = Utility.GetRootLocation() + @"bin\sp_tool.exe";
                 SPTool.StartInfo.WorkingDirectory = Utility.GetRootLocation();
@@ -123,14 +123,14 @@ namespace CallofDuty4CompileTools.src
 
                 StreamReader Reader = SPTool.StandardOutput;
                 while(!Reader.EndOfStream)
-                    Main.StaticConsoleInstance.WriteLine(Reader.ReadLine());
+                    Main.StaticConsoleInstance.WriteOutputLn(Reader.ReadLine());
 
                 Reader.Close();
                 Reader.Dispose();
                 SPTool.Close();
             }
 
-            Main.StaticConsoleInstance.WriteLine("\nFinished\n--------------------------------------------------\n");
+            Main.StaticConsoleInstance.WriteOutputLn("\nFinished\n--------------------------------------------------\n", Color.Green);
         }
     }
 }

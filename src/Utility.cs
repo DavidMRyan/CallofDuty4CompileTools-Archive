@@ -1,9 +1,9 @@
 ﻿using Microsoft.Win32;
-using System.Collections.Generic;
+using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
-using WindowsForm.Console;
+using System.Windows.Forms;
 
 namespace CallofDuty4CompileTools
 {
@@ -15,6 +15,12 @@ namespace CallofDuty4CompileTools
         /// <returns>The string value of the registry entry containing the user's game root directory.</returns>
         public static string GetRootLocation() =>
             (string)Registry.GetValue(@"HKEY_CURRENT_USER\Software\Call of Duty 4 Compile Tools", "RootPath", null);
+
+        public static void WriteOutputLn(this ConsoleControl.ConsoleControl console, string message) =>
+            console.WriteOutput(message + Environment.NewLine, Color.White);
+
+        public static void WriteOutputLn(this ConsoleControl.ConsoleControl console, string message, Color color) =>
+            console.WriteOutput(message + Environment.NewLine, color);
 
         /// <summary>
         /// Initializes the process that is passed with the specified start information.
@@ -34,7 +40,7 @@ namespace CallofDuty4CompileTools
                 proc.StartInfo.Arguments = arguments;
             }
             else
-                Main.StaticConsoleInstance.WriteLine(workingDirectory + "  not Found! Make sure you've specified your game's root path, and installed the Call of Duty 4 Mod Tools!", Color.Red);    
+                Main.StaticConsoleInstance.WriteOutputLn(workingDirectory + "  not Found! Make sure you've specified your game's root path, and installed the Call of Duty 4 Mod Tools!", Color.Red);    
         }
 
         /// <summary>
@@ -48,16 +54,28 @@ namespace CallofDuty4CompileTools
             {
                 string[] maps = Directory.GetFiles(workingDirectory, "*.map",
                     SearchOption.TopDirectoryOnly);
-                Main.StaticMapListBoxInstance.Items.Clear();
+
+                if(Main.StaticMapComboBoxInstance.Items.Count > 0)
+                    Main.StaticMapComboBoxInstance.Items.Clear();
 
                 foreach (string map in maps)
                 {
-                    Main.StaticConsoleInstance.WriteLine(map);
-                    Main.StaticMapListBoxInstance.Items.Add(Path.GetFileName(map));
+                    Main.StaticConsoleInstance.WriteOutputLn(Path.GetFileName(map));
+                    Main.StaticMapComboBoxInstance.Items.Add(Path.GetFileName(map));
                 }
             }
             else
-                Main.StaticConsoleInstance.WriteLine(workingDirectory + " not Found! Make sure you've specified your game's root path, and installed the Call of Duty 4 Mod Tools!", Color.Red);
+                Main.StaticConsoleInstance.WriteOutputLn(workingDirectory + " not Found! Make sure you've specified your game's root path, and installed the Call of Duty 4 Mod Tools!", Color.Red);
         }
+
+        //public static void OnPaint(object sender, PaintEventArgs e)
+        //{
+            
+        //}
     }
+
+    //public class CustomFormConsole : FConsole
+    //{
+        
+    //}
 }

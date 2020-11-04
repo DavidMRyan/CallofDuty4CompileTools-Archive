@@ -34,13 +34,21 @@
       "frameworks": {
         "net461": {
           "dependencies": {
+            "DarkUI": {
+              "target": "Package",
+              "version": "[2.0.2, )"
+            },
+            "MetroModernUI": {
+              "target": "Package",
+              "version": "[1.4.0, )"
+            },
             "Newtonsoft.Json": {
               "target": "Package",
-              "version": "[12.0.1, )"
+              "version": "[12.0.3, )"
             },
-            "WindowsForm.Console": {
+            "TabControl": {
               "target": "Package",
-              "version": "[1.9.30.1256, )"
+              "version": "[2.1.2, )"
             }
           }
         }

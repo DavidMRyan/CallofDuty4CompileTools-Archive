@@ -3,9 +3,9 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using WindowsForm.Console;
-
+using Guna.UI.WinForms;
 using CallofDuty4CompileTools.src;
+
 
 namespace CallofDuty4CompileTools
 {
@@ -13,16 +13,16 @@ namespace CallofDuty4CompileTools
     {
         PopupMenu Popup = new PopupMenu();
         Process BinProcess = new Process();
-        public static FConsole StaticConsoleInstance;
-        public static ListBox StaticMapListBoxInstance;
+        public static ConsoleControl.ConsoleControl StaticConsoleInstance;
+        public static GunaComboBox StaticMapComboBoxInstance;
 
         public Main()
         {
             InitializeComponent();
-            CheckForIllegalCrossThreadCalls = false;
             StaticConsoleInstance = FormConsole;
-            StaticMapListBoxInstance = MapsListBox;
+            StaticMapComboBoxInstance = MapComboBox;
             MaximizeBox = false;
+            Utility.GetMaps();
         }
 
         /// <summary>
@@ -32,8 +32,8 @@ namespace CallofDuty4CompileTools
         /// <param name="e">The event which has been triggered.</param>
         public void onChange(object sender, EventArgs e)
         {
-            if (MapsListBox.SelectedItem != null)
-                SaveSettingsCSV(MapsListBox.SelectedItem.ToString());
+            if (MapComboBox.SelectedItem != null)
+                SaveSettingsCSV(MapComboBox.SelectedItem.ToString());
         }
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace CallofDuty4CompileTools
         /// <param name="sender">The Object which triggered the event.</param>
         /// <param name="e">The event which has been triggered.</param>
         private void ClearConsoleLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) =>
-            FormConsole.Clear();
+            FormConsole.ClearOutput();
 
         private void OptionsButton_Click(object sender, EventArgs e)
         {
@@ -58,7 +58,7 @@ namespace CallofDuty4CompileTools
 
         private void RefreshMapsButton_Click(object sender, EventArgs e)
         {
-            FormConsole.WriteLine("Refreshing Map List...\n=================================================");
+            FormConsole.WriteOutputLn("Refreshing Map List\n--------------------------------------------------", Color.CornflowerBlue);
             Utility.GetMaps();
         }
 
@@ -96,23 +96,23 @@ namespace CallofDuty4CompileTools
         }
 
         /// <summary>
-        /// If a map is selected within the 'MapsListBox' List Box, this button will run the selected map.
+        /// If a map is selected within the 'MapComboBox' List Box, this button will run the selected map.
         /// </summary>
         /// <param name="sender">The Object which triggered the event.</param>
         /// <param name="e">The event which has been triggered.</param>
         private void RunSelectedMapButton_Click(object sender, EventArgs e)
         {
-            string Map = MapsListBox.SelectedIndex < 0 ? null : MapsListBox.SelectedItem.ToString();
+            string Map = MapComboBox.SelectedIndex < 0 ? null : MapComboBox.SelectedItem.ToString();
             string CustomArgs = MapCustomCommandLineTextBox.Text;
             bool isMultiplayerMap;
 
-            if (MapsListBox.SelectedItem == null)
+            if (MapComboBox.SelectedItem == null)
             {
-                FormConsole.WriteLine("Warning: No Map was Selected. Please Select a Map!", Color.Yellow);
+                FormConsole.WriteOutputLn("Warning: No Map was Selected. Please Select a Map!", Color.Yellow);
                 return;
             }
             else
-                isMultiplayerMap = MapsListBox.SelectedItem.ToString().Contains("mp_");
+                isMultiplayerMap = MapComboBox.SelectedItem.ToString().Contains("mp_");
 
             RunSelectedMap.Start(Map, isMultiplayerMap, EnableDeveloperCheckBox.Checked,
                 EnableDeveloperScriptCheckBox.Checked, EnableCheatsCheckBox.Checked, CustomArgs);
@@ -123,12 +123,12 @@ namespace CallofDuty4CompileTools
         /// </summary>
         /// <param name="sender">The Object which triggered the event.</param>
         /// <param name="e">The event which has been triggered.</param>
-        private void MapsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void MapComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (MapsListBox.SelectedIndex > -1)
-                LoadSettings(MapsListBox.SelectedItem.ToString());
+            if (MapComboBox.SelectedIndex > -1)
+                LoadSettings(MapComboBox.SelectedItem.ToString());
             else
-                FormConsole.WriteLine("Warning: Couldn't load settings for " + MapsListBox.SelectedItem.ToString(), Color.Yellow);
+                FormConsole.WriteOutputLn("Warning: Couldn't load settings for " + MapComboBox.SelectedItem.ToString(), Color.Yellow);
         }
 
         /// <summary>
@@ -138,15 +138,15 @@ namespace CallofDuty4CompileTools
         /// <param name="e">The event which has been triggered.</param>
         private void CompileBSPButton_Click(object sender, EventArgs e)
         {
-            string MapName = MapsListBox.SelectedIndex > -1 ? Path.GetFileNameWithoutExtension(MapsListBox.SelectedItem.ToString()) : null;
+            string MapName = MapComboBox.SelectedIndex > -1 ? Path.GetFileNameWithoutExtension(MapComboBox.SelectedItem.ToString()) : null;
             string BSPPath = Utility.GetRootLocation() + @"raw\maps\mp\" + MapName + ".d3dbsp";
             string MapLocation = Utility.GetRootLocation() + @"map_source\" + MapName + ".map";
             string BSPArgs = CustomCommandLineTextBox.Text;
             string LightArgs = CustomLightOptionsTextBox.Text;
 
-            if (MapsListBox.SelectedItem == null)
+            if (MapComboBox.SelectedItem == null)
             {
-                FormConsole.WriteLine("Warning: No Map was Selected. Please Select a Map!", Color.Yellow);
+                FormConsole.WriteOutputLn("Warning: No Map was Selected. Please Select a Map!", Color.Yellow);
                 return;
             }
 
@@ -161,17 +161,17 @@ namespace CallofDuty4CompileTools
         /// <param name="e">The event which has been triggered.</param>
         private void CompileReflectionsButton_Click(object sender, EventArgs e)
         {
-            string MapName = MapsListBox.SelectedIndex > 0 ?
-                Path.GetFileNameWithoutExtension(MapsListBox.SelectedItem.ToString()) : null;
+            string MapName = MapComboBox.SelectedIndex > 0 ?
+                Path.GetFileNameWithoutExtension(MapComboBox.SelectedItem.ToString()) : null;
             bool isMultiplayerMap;
 
-            if (MapsListBox.SelectedItem == null)
+            if (MapComboBox.SelectedItem == null)
             {
-                FormConsole.WriteLine("Warning: No Map was Selected. Please Select a Map!", Color.Yellow);
+                FormConsole.WriteOutputLn("Warning: No Map was Selected. Please Select a Map!", Color.Yellow);
                 return;
             }
             else
-                isMultiplayerMap = MapsListBox.SelectedItem.ToString().Contains("mp_");
+                isMultiplayerMap = MapComboBox.SelectedItem.ToString().Contains("mp_");
 
             CompileReflections.Start(Utility.GetRootLocation(), MapName, isMultiplayerMap);
         }
@@ -183,14 +183,14 @@ namespace CallofDuty4CompileTools
         /// <param name="e">The event which has been triggered.</param>
         private void BuildFFButton_Click(object sender, EventArgs e)
         {
-            if (MapsListBox.SelectedItem == null)
+            if (MapComboBox.SelectedItem == null)
             {
-                FormConsole.WriteLine("Warning: No Map was Selected. Please Select a Map!", Color.Yellow);
+                FormConsole.WriteOutputLn("Warning: No Map was Selected. Please Select a Map!", Color.Yellow);
                 return;
             }
 
-            BuildFF.Start(MapsListBox.SelectedIndex > -1 ?
-                Path.GetFileNameWithoutExtension(MapsListBox.SelectedItem.ToString()) : null);
+            BuildFF.Start(MapComboBox.SelectedIndex > -1 ?
+                Path.GetFileNameWithoutExtension(MapComboBox.SelectedItem.ToString()) : null);
         }
 
         /// <summary>
@@ -237,6 +237,7 @@ namespace CallofDuty4CompileTools
             );
         }
 
+        // TODO: Use this on MapComboBox_SelectedIndexChanged event
         /// <summary>
         /// This method loads the settings for the selected map.
         /// </summary>
@@ -246,7 +247,7 @@ namespace CallofDuty4CompileTools
             string SettingsPath = Utility.GetRootLocation() + @"bin\CoD4CompileTools\";
             string SettingsFileName = MapName.Substring(0, MapName.Length - 4);
 
-            CheckBox[] CheckBoxes = new CheckBox[] 
+            GunaCheckBox[] CheckBoxes = new GunaCheckBox[]
             {
                 CompileBSPCheckBox,
                 CompileLightingCheckBox,
@@ -270,7 +271,7 @@ namespace CallofDuty4CompileTools
                 EnableCheatsCheckBox
             };
 
-            TextBox[] TextBoxes = new TextBox[]
+            GunaTextBox[] TextBoxes = new GunaTextBox[]
             {
                 BlockSizeTextBox,
                 SampleScaleTextBox,
@@ -309,7 +310,7 @@ namespace CallofDuty4CompileTools
             }
 
             else
-                FormConsole.WriteLine("Warning: Couldn't find file \'" + SettingsPath + SettingsFileName + ".settings" + "\'", Color.Yellow);
+                FormConsole.WriteOutputLn("Warning: Couldn't find file \'" + SettingsFileName + ".settings" + "\'", Color.Yellow);
         }
     }
 }

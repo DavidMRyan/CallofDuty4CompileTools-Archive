@@ -22,13 +22,7 @@ E:\Projects\CallofDuty4CompileTools\bin\Debug\CallofDuty4CompileTools.exe.config
 E:\Projects\CallofDuty4CompileTools\bin\Debug\CallofDuty4CompileTools.exe
 E:\Projects\CallofDuty4CompileTools\bin\Debug\CallofDuty4CompileTools.pdb
 E:\Projects\CallofDuty4CompileTools\bin\Debug\Newtonsoft.Json.dll
-E:\Projects\CallofDuty4CompileTools\bin\Debug\Newtonsoft.Json.pdb
-E:\Projects\CallofDuty4CompileTools\bin\Debug\SXN.Core.dll
-E:\Projects\CallofDuty4CompileTools\bin\Debug\System.Windows.Forms.dll
-E:\Projects\CallofDuty4CompileTools\bin\Debug\WindowsForm.Console.dll
-E:\Projects\CallofDuty4CompileTools\bin\Debug\WindowsForm.Console.pdb
 E:\Projects\CallofDuty4CompileTools\obj\Debug\CallofDuty4CompileTools.csprojAssemblyReference.cache
-E:\Projects\CallofDuty4CompileTools\obj\Debug\CallofDuty4CompileTools.exe.config
 E:\Projects\CallofDuty4CompileTools\obj\Debug\CallofDuty4CompileTools.Main.resources
 E:\Projects\CallofDuty4CompileTools\obj\Debug\CallofDuty4CompileTools.PopupMenu.resources
 E:\Projects\CallofDuty4CompileTools\obj\Debug\CallofDuty4CompileTools.Properties.Resources.resources
@@ -38,3 +32,12 @@ E:\Projects\CallofDuty4CompileTools\obj\Debug\CallofDuty4CompileTools.csproj.Cor
 E:\Projects\CallofDuty4CompileTools\obj\Debug\CallofDuty4CompileTools.csproj.CopyComplete
 E:\Projects\CallofDuty4CompileTools\obj\Debug\CallofDuty4CompileTools.exe
 E:\Projects\CallofDuty4CompileTools\obj\Debug\CallofDuty4CompileTools.pdb
+E:\Projects\CallofDuty4CompileTools\bin\Debug\Guna.UI.dll
+E:\Projects\CallofDuty4CompileTools\bin\Debug\MetroFramework.Design.dll
+E:\Projects\CallofDuty4CompileTools\bin\Debug\MetroFramework.Fonts.dll
+E:\Projects\CallofDuty4CompileTools\bin\Debug\MetroFramework.dll
+E:\Projects\CallofDuty4CompileTools\bin\Debug\DarkUI.dll
+E:\Projects\CallofDuty4CompileTools\bin\Debug\PagedControl.dll
+E:\Projects\CallofDuty4CompileTools\bin\Debug\TabControl.dll
+E:\Projects\CallofDuty4CompileTools\bin\Debug\ConsoleControl.dll
+E:\Projects\CallofDuty4CompileTools\bin\Debug\ConsoleControlAPI.dll
