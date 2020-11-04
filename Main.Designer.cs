@@ -203,7 +203,7 @@
             this.RunSelectedMapButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
             this.RunSelectedMapButton.Location = new System.Drawing.Point(14, 439);
             this.RunSelectedMapButton.Name = "RunSelectedMapButton";
-            this.RunSelectedMapButton.Size = new System.Drawing.Size(349, 38);
+            this.RunSelectedMapButton.Size = new System.Drawing.Size(348, 38);
             this.RunSelectedMapButton.TabIndex = 52;
             this.RunSelectedMapButton.Text = "Run Selected Map";
             this.RunSelectedMapButton.UseVisualStyleBackColor = false;
@@ -217,7 +217,7 @@
             this.UpdateCSVButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
             this.UpdateCSVButton.Location = new System.Drawing.Point(14, 406);
             this.UpdateCSVButton.Name = "UpdateCSVButton";
-            this.UpdateCSVButton.Size = new System.Drawing.Size(349, 23);
+            this.UpdateCSVButton.Size = new System.Drawing.Size(348, 23);
             this.UpdateCSVButton.TabIndex = 51;
             this.UpdateCSVButton.Text = "Update CSV";
             this.UpdateCSVButton.UseVisualStyleBackColor = false;
@@ -230,7 +230,7 @@
             this.BuildFFButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
             this.BuildFFButton.Location = new System.Drawing.Point(14, 377);
             this.BuildFFButton.Name = "BuildFFButton";
-            this.BuildFFButton.Size = new System.Drawing.Size(349, 23);
+            this.BuildFFButton.Size = new System.Drawing.Size(348, 23);
             this.BuildFFButton.TabIndex = 50;
             this.BuildFFButton.Text = "Build Fast File";
             this.BuildFFButton.UseVisualStyleBackColor = false;
@@ -244,7 +244,7 @@
             this.CompileReflectionsButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
             this.CompileReflectionsButton.Location = new System.Drawing.Point(14, 348);
             this.CompileReflectionsButton.Name = "CompileReflectionsButton";
-            this.CompileReflectionsButton.Size = new System.Drawing.Size(349, 23);
+            this.CompileReflectionsButton.Size = new System.Drawing.Size(348, 23);
             this.CompileReflectionsButton.TabIndex = 49;
             this.CompileReflectionsButton.Text = "Compile Reflections";
             this.CompileReflectionsButton.UseVisualStyleBackColor = false;
@@ -258,7 +258,7 @@
             this.CompileBSPButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
             this.CompileBSPButton.Location = new System.Drawing.Point(14, 319);
             this.CompileBSPButton.Name = "CompileBSPButton";
-            this.CompileBSPButton.Size = new System.Drawing.Size(349, 23);
+            this.CompileBSPButton.Size = new System.Drawing.Size(348, 23);
             this.CompileBSPButton.TabIndex = 48;
             this.CompileBSPButton.Text = "Compile BSP";
             this.CompileBSPButton.UseVisualStyleBackColor = false;
@@ -272,9 +272,9 @@
             this.RefreshMapsButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
             this.RefreshMapsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RefreshMapsButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(130)))), ((int)(((byte)(130)))));
-            this.RefreshMapsButton.Location = new System.Drawing.Point(291, 28);
+            this.RefreshMapsButton.Location = new System.Drawing.Point(337, 28);
             this.RefreshMapsButton.Name = "RefreshMapsButton";
-            this.RefreshMapsButton.Size = new System.Drawing.Size(23, 22);
+            this.RefreshMapsButton.Size = new System.Drawing.Size(25, 26);
             this.RefreshMapsButton.TabIndex = 46;
             this.RefreshMapsButton.UseVisualStyleBackColor = false;
             this.RefreshMapsButton.Click += new System.EventHandler(this.RefreshMapsButton_Click);
@@ -295,7 +295,7 @@
             this.MapComboBox.Name = "MapComboBox";
             this.MapComboBox.OnHoverItemBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             this.MapComboBox.OnHoverItemForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
-            this.MapComboBox.Size = new System.Drawing.Size(183, 26);
+            this.MapComboBox.Size = new System.Drawing.Size(229, 26);
             this.MapComboBox.TabIndex = 60;
             this.MapComboBox.SelectedIndexChanged += new System.EventHandler(this.MapComboBox_SelectedIndexChanged);
             // 
