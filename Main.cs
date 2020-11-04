@@ -46,7 +46,11 @@ namespace CallofDuty4CompileTools
 
         private void OptionsButton_Click(object sender, EventArgs e)
         {
-            // Open the Options Menu
+            // TODO: Open the Options Menu
+            // For now I just show the root path popup so we can test
+            RootPathPopupMenu RootPathPopup = new RootPathPopupMenu();
+            Popup.Show();
+            RootPathPopup.Show();
         }
 
         private void RootPathButton_Click(object sender, EventArgs e)
