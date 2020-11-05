@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace CallofDuty4CompileTools
 {
-    static class Utility
+    public static class Utility
     {
         /// <summary>
         /// Gets a registry value containing the path of the user's Call of Duty 4 root directory.
