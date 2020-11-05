@@ -26,10 +26,7 @@ namespace CallofDuty4CompileTools
             CheckForIllegalCrossThreadCalls = false;
             StaticConsoleInstance = FormConsole;
             StaticMapComboBoxInstance = MapComboBox;
-
             MaximizeBox = false;
-            CustomCommandLineTextBox.ScrollToCaret();
-            CustomLightOptionsTextBox.ScrollToCaret();
             Utility.GetMaps();
         }
 
