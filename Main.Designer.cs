@@ -50,6 +50,8 @@
             this.OpenFXButton = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.OptionsButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.HelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TabControl = new Manina.Windows.Forms.TabControl();
             this.BSPTab = new Manina.Windows.Forms.Tab();
             this.CompilePathsCheckBox = new Guna.UI.WinForms.GunaCheckBox();
@@ -103,7 +105,7 @@
             this.EnableDeveloperScriptCheckBox.Size = new System.Drawing.Size(152, 20);
             this.EnableDeveloperScriptCheckBox.TabIndex = 59;
             this.EnableDeveloperScriptCheckBox.Text = "Enable Developer Script";
-            this.EnableDeveloperScriptCheckBox.CheckedChanged += new System.EventHandler(this.onChange);
+            this.EnableDeveloperScriptCheckBox.CheckedChanged += new System.EventHandler(this.OnChange);
             // 
             // CustomCommandLineCheckBox
             // 
@@ -118,7 +120,7 @@
             this.CustomCommandLineCheckBox.Size = new System.Drawing.Size(229, 20);
             this.CustomCommandLineCheckBox.TabIndex = 58;
             this.CustomCommandLineCheckBox.Text = "Use Custom Command Line Arguments";
-            this.CustomCommandLineCheckBox.CheckedChanged += new System.EventHandler(this.onChange);
+            this.CustomCommandLineCheckBox.CheckedChanged += new System.EventHandler(this.OnChange);
             // 
             // EnableCheatsCheckBox
             // 
@@ -133,7 +135,7 @@
             this.EnableCheatsCheckBox.Size = new System.Drawing.Size(104, 20);
             this.EnableCheatsCheckBox.TabIndex = 57;
             this.EnableCheatsCheckBox.Text = "Enable Cheats";
-            this.EnableCheatsCheckBox.CheckedChanged += new System.EventHandler(this.onChange);
+            this.EnableCheatsCheckBox.CheckedChanged += new System.EventHandler(this.OnChange);
             // 
             // EnableDeveloperCheckBox
             // 
@@ -148,7 +150,7 @@
             this.EnableDeveloperCheckBox.Size = new System.Drawing.Size(120, 20);
             this.EnableDeveloperCheckBox.TabIndex = 56;
             this.EnableDeveloperCheckBox.Text = "Enable Developer";
-            this.EnableDeveloperCheckBox.CheckedChanged += new System.EventHandler(this.onChange);
+            this.EnableDeveloperCheckBox.CheckedChanged += new System.EventHandler(this.OnChange);
             // 
             // MapCustomCommandLineTextBox
             // 
@@ -167,7 +169,7 @@
             this.MapCustomCommandLineTextBox.PasswordChar = '\0';
             this.MapCustomCommandLineTextBox.Size = new System.Drawing.Size(340, 26);
             this.MapCustomCommandLineTextBox.TabIndex = 55;
-            this.MapCustomCommandLineTextBox.TextChanged += new System.EventHandler(this.onChange);
+            this.MapCustomCommandLineTextBox.TextChanged += new System.EventHandler(this.OnChange);
             // 
             // MapSelectionLabel
             // 
@@ -222,6 +224,7 @@
             this.UpdateCSVButton.TabIndex = 51;
             this.UpdateCSVButton.Text = "Update CSV";
             this.UpdateCSVButton.UseVisualStyleBackColor = false;
+            this.UpdateCSVButton.Click += new System.EventHandler(this.UpdateCSVButton_Click);
             // 
             // BuildFFButton
             // 
@@ -305,7 +308,9 @@
             this.MenuStrip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             this.MenuStrip.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.MenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolsToolStripMenuItem});
+            this.toolsToolStripMenuItem,
+            this.AboutToolStripMenuItem,
+            this.HelpToolStripMenuItem});
             this.MenuStrip.Location = new System.Drawing.Point(0, 0);
             this.MenuStrip.Name = "MenuStrip";
             this.MenuStrip.Padding = new System.Windows.Forms.Padding(3, 2, 0, 2);
@@ -364,11 +369,29 @@
             // OptionsButton
             // 
             this.OptionsButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
-            this.OptionsButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
+            this.OptionsButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.OptionsButton.Name = "OptionsButton";
             this.OptionsButton.Size = new System.Drawing.Size(152, 22);
             this.OptionsButton.Text = "Preferences";
             this.OptionsButton.Click += new System.EventHandler(this.OptionsButton_Click);
+            // 
+            // AboutToolStripMenuItem
+            // 
+            this.AboutToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.AboutToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
+            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
+            this.AboutToolStripMenuItem.Text = "About";
+            this.AboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
+            // 
+            // HelpToolStripMenuItem
+            // 
+            this.HelpToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.HelpToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem";
+            this.HelpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.HelpToolStripMenuItem.Text = "Help";
+            this.HelpToolStripMenuItem.Click += new System.EventHandler(this.HelpToolStripMenuItem_Click);
             // 
             // TabControl
             // 
@@ -420,7 +443,7 @@
             this.CompilePathsCheckBox.Size = new System.Drawing.Size(103, 20);
             this.CompilePathsCheckBox.TabIndex = 68;
             this.CompilePathsCheckBox.Text = "Compile Paths";
-            this.CompilePathsCheckBox.CheckedChanged += new System.EventHandler(this.onChange);
+            this.CompilePathsCheckBox.CheckedChanged += new System.EventHandler(this.OnChange);
             // 
             // CompileLightingCheckBox
             // 
@@ -436,7 +459,7 @@
             this.CompileLightingCheckBox.Size = new System.Drawing.Size(114, 20);
             this.CompileLightingCheckBox.TabIndex = 67;
             this.CompileLightingCheckBox.Text = "Compile Lighting";
-            this.CompileLightingCheckBox.CheckedChanged += new System.EventHandler(this.onChange);
+            this.CompileLightingCheckBox.CheckedChanged += new System.EventHandler(this.OnChange);
             // 
             // CompileBSPCheckBox
             // 
@@ -452,7 +475,7 @@
             this.CompileBSPCheckBox.Size = new System.Drawing.Size(97, 20);
             this.CompileBSPCheckBox.TabIndex = 66;
             this.CompileBSPCheckBox.Text = "Compile BSP";
-            this.CompileBSPCheckBox.CheckedChanged += new System.EventHandler(this.onChange);
+            this.CompileBSPCheckBox.CheckedChanged += new System.EventHandler(this.OnChange);
             // 
             // SampleScaleTextBox
             // 
@@ -471,7 +494,7 @@
             this.SampleScaleTextBox.PasswordChar = '\0';
             this.SampleScaleTextBox.Size = new System.Drawing.Size(69, 26);
             this.SampleScaleTextBox.TabIndex = 65;
-            this.SampleScaleTextBox.TextChanged += new System.EventHandler(this.onChange);
+            this.SampleScaleTextBox.TextChanged += new System.EventHandler(this.OnChange);
             // 
             // BlockSizeTextBox
             // 
@@ -490,7 +513,7 @@
             this.BlockSizeTextBox.PasswordChar = '\0';
             this.BlockSizeTextBox.Size = new System.Drawing.Size(69, 26);
             this.BlockSizeTextBox.TabIndex = 64;
-            this.BlockSizeTextBox.TextChanged += new System.EventHandler(this.onChange);
+            this.BlockSizeTextBox.TextChanged += new System.EventHandler(this.OnChange);
             // 
             // CustomCommandLineTextBox
             // 
@@ -509,7 +532,7 @@
             this.CustomCommandLineTextBox.PasswordChar = '\0';
             this.CustomCommandLineTextBox.Size = new System.Drawing.Size(340, 26);
             this.CustomCommandLineTextBox.TabIndex = 63;
-            this.CustomCommandLineTextBox.TextChanged += new System.EventHandler(this.onChange);
+            this.CustomCommandLineTextBox.TextChanged += new System.EventHandler(this.OnChange);
             // 
             // gunaSeparator2
             // 
@@ -541,7 +564,7 @@
             this.DebugLightmapsCheckBox.Size = new System.Drawing.Size(118, 20);
             this.DebugLightmapsCheckBox.TabIndex = 60;
             this.DebugLightmapsCheckBox.Text = "Debug Lightmaps";
-            this.DebugLightmapsCheckBox.CheckedChanged += new System.EventHandler(this.onChange);
+            this.DebugLightmapsCheckBox.CheckedChanged += new System.EventHandler(this.OnChange);
             // 
             // SampleScaleCheckBox
             // 
@@ -556,7 +579,7 @@
             this.SampleScaleCheckBox.Size = new System.Drawing.Size(100, 20);
             this.SampleScaleCheckBox.TabIndex = 59;
             this.SampleScaleCheckBox.Text = "Sample Scale";
-            this.SampleScaleCheckBox.CheckedChanged += new System.EventHandler(this.onChange);
+            this.SampleScaleCheckBox.CheckedChanged += new System.EventHandler(this.OnChange);
             // 
             // BlockSizeCheckBox
             // 
@@ -571,7 +594,7 @@
             this.BlockSizeCheckBox.Size = new System.Drawing.Size(83, 20);
             this.BlockSizeCheckBox.TabIndex = 58;
             this.BlockSizeCheckBox.Text = "Block Size";
-            this.BlockSizeCheckBox.CheckedChanged += new System.EventHandler(this.onChange);
+            this.BlockSizeCheckBox.CheckedChanged += new System.EventHandler(this.OnChange);
             // 
             // OnlyEntsCheckBox
             // 
@@ -586,7 +609,7 @@
             this.OnlyEntsCheckBox.Size = new System.Drawing.Size(93, 20);
             this.OnlyEntsCheckBox.TabIndex = 57;
             this.OnlyEntsCheckBox.Text = "Only Entities";
-            this.OnlyEntsCheckBox.CheckedChanged += new System.EventHandler(this.onChange);
+            this.OnlyEntsCheckBox.CheckedChanged += new System.EventHandler(this.OnChange);
             // 
             // LightingTab
             // 
@@ -629,7 +652,7 @@
             this.JitterTextBox.PasswordChar = '\0';
             this.JitterTextBox.Size = new System.Drawing.Size(69, 26);
             this.JitterTextBox.TabIndex = 81;
-            this.JitterTextBox.TextChanged += new System.EventHandler(this.onChange);
+            this.JitterTextBox.TextChanged += new System.EventHandler(this.OnChange);
             // 
             // BounceFractionTextBox
             // 
@@ -648,7 +671,7 @@
             this.BounceFractionTextBox.PasswordChar = '\0';
             this.BounceFractionTextBox.Size = new System.Drawing.Size(69, 26);
             this.BounceFractionTextBox.TabIndex = 80;
-            this.BounceFractionTextBox.TextChanged += new System.EventHandler(this.onChange);
+            this.BounceFractionTextBox.TextChanged += new System.EventHandler(this.OnChange);
             // 
             // TracesTextBox
             // 
@@ -667,7 +690,7 @@
             this.TracesTextBox.PasswordChar = '\0';
             this.TracesTextBox.Size = new System.Drawing.Size(69, 26);
             this.TracesTextBox.TabIndex = 79;
-            this.TracesTextBox.TextChanged += new System.EventHandler(this.onChange);
+            this.TracesTextBox.TextChanged += new System.EventHandler(this.OnChange);
             // 
             // JitterCheckBox
             // 
@@ -682,7 +705,7 @@
             this.JitterCheckBox.Size = new System.Drawing.Size(54, 20);
             this.JitterCheckBox.TabIndex = 78;
             this.JitterCheckBox.Text = "Jitter";
-            this.JitterCheckBox.CheckedChanged += new System.EventHandler(this.onChange);
+            this.JitterCheckBox.CheckedChanged += new System.EventHandler(this.OnChange);
             // 
             // BounceFractionCheckBox
             // 
@@ -697,7 +720,7 @@
             this.BounceFractionCheckBox.Size = new System.Drawing.Size(112, 20);
             this.BounceFractionCheckBox.TabIndex = 77;
             this.BounceFractionCheckBox.Text = "Bounce Fraction";
-            this.BounceFractionCheckBox.CheckedChanged += new System.EventHandler(this.onChange);
+            this.BounceFractionCheckBox.CheckedChanged += new System.EventHandler(this.OnChange);
             // 
             // TracesCheckBox
             // 
@@ -712,7 +735,7 @@
             this.TracesCheckBox.Size = new System.Drawing.Size(64, 20);
             this.TracesCheckBox.TabIndex = 76;
             this.TracesCheckBox.Text = "Traces";
-            this.TracesCheckBox.CheckedChanged += new System.EventHandler(this.onChange);
+            this.TracesCheckBox.CheckedChanged += new System.EventHandler(this.OnChange);
             // 
             // DumpOptionsCheckBox
             // 
@@ -727,7 +750,7 @@
             this.DumpOptionsCheckBox.Size = new System.Drawing.Size(102, 20);
             this.DumpOptionsCheckBox.TabIndex = 75;
             this.DumpOptionsCheckBox.Text = "Dump Options";
-            this.DumpOptionsCheckBox.CheckedChanged += new System.EventHandler(this.onChange);
+            this.DumpOptionsCheckBox.CheckedChanged += new System.EventHandler(this.OnChange);
             // 
             // NoModelShadowCheckBox
             // 
@@ -742,7 +765,7 @@
             this.NoModelShadowCheckBox.Size = new System.Drawing.Size(122, 20);
             this.NoModelShadowCheckBox.TabIndex = 74;
             this.NoModelShadowCheckBox.Text = "No Model Shadow";
-            this.NoModelShadowCheckBox.CheckedChanged += new System.EventHandler(this.onChange);
+            this.NoModelShadowCheckBox.CheckedChanged += new System.EventHandler(this.OnChange);
             // 
             // ModelShadowCheckBox
             // 
@@ -757,7 +780,7 @@
             this.ModelShadowCheckBox.Size = new System.Drawing.Size(105, 20);
             this.ModelShadowCheckBox.TabIndex = 73;
             this.ModelShadowCheckBox.Text = "Model Shadow";
-            this.ModelShadowCheckBox.CheckedChanged += new System.EventHandler(this.onChange);
+            this.ModelShadowCheckBox.CheckedChanged += new System.EventHandler(this.OnChange);
             // 
             // VerboseCheckBox
             // 
@@ -772,7 +795,7 @@
             this.VerboseCheckBox.Size = new System.Drawing.Size(72, 20);
             this.VerboseCheckBox.TabIndex = 72;
             this.VerboseCheckBox.Text = "Verbose";
-            this.VerboseCheckBox.CheckedChanged += new System.EventHandler(this.onChange);
+            this.VerboseCheckBox.CheckedChanged += new System.EventHandler(this.OnChange);
             // 
             // ExtraCheckBox
             // 
@@ -787,7 +810,7 @@
             this.ExtraCheckBox.Size = new System.Drawing.Size(56, 20);
             this.ExtraCheckBox.TabIndex = 71;
             this.ExtraCheckBox.Text = "Extra";
-            this.ExtraCheckBox.CheckedChanged += new System.EventHandler(this.onChange);
+            this.ExtraCheckBox.CheckedChanged += new System.EventHandler(this.OnChange);
             // 
             // CustomLightOptionsTextBox
             // 
@@ -806,7 +829,7 @@
             this.CustomLightOptionsTextBox.PasswordChar = '\0';
             this.CustomLightOptionsTextBox.Size = new System.Drawing.Size(340, 26);
             this.CustomLightOptionsTextBox.TabIndex = 70;
-            this.CustomLightOptionsTextBox.TextChanged += new System.EventHandler(this.onChange);
+            this.CustomLightOptionsTextBox.TextChanged += new System.EventHandler(this.OnChange);
             // 
             // gunaSeparator3
             // 
@@ -839,7 +862,7 @@
             this.FastCheckBox.Size = new System.Drawing.Size(52, 20);
             this.FastCheckBox.TabIndex = 67;
             this.FastCheckBox.Text = "Fast";
-            this.FastCheckBox.CheckedChanged += new System.EventHandler(this.onChange);
+            this.FastCheckBox.CheckedChanged += new System.EventHandler(this.OnChange);
             // 
             // RunTab
             // 
@@ -968,6 +991,8 @@
         private Guna.UI.WinForms.GunaCheckBox DumpOptionsCheckBox;
         private Guna.UI.WinForms.GunaCheckBox NoModelShadowCheckBox;
         private Guna.UI.WinForms.GunaCheckBox ModelShadowCheckBox;
+        private System.Windows.Forms.ToolStripMenuItem AboutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem HelpToolStripMenuItem;
     }
 }
 

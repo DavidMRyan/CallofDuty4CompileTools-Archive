@@ -11,28 +11,29 @@ namespace CallofDuty4CompileTools
 {
     public partial class Main : Form
     {
-        public static Thread Thread { get; } = Thread.CurrentThread;
+        private static RootPathPopupMenu RootPathPopup { get; } = new RootPathPopupMenu();
+        private static PopupMenu Popup { get; } = new PopupMenu();
 
-        PopupMenu Popup = new PopupMenu();
-        Process BinProcess = new Process();
-        public static ConsoleControl.ConsoleControl StaticConsoleInstance;
-        public static GunaComboBox StaticMapComboBoxInstance;
+        public static ConsoleControl.ConsoleControl StaticConsoleInstance { get; set; }
+        public static GunaComboBox StaticMapComboBoxInstance { get; set; }
+        public static Thread Thread { get; } = Thread.CurrentThread;
+        public static Process BinProcess { get; } = new Process();
+
 
         public Main()
         {
             InitializeComponent();
             // TODO: Create Thread-Safety rather than
             // disabling these checks for illegal cross thread calls.
+            // 100% memory leak :ok_hand:
             CheckForIllegalCrossThreadCalls = false;
             StaticConsoleInstance = FormConsole;
             StaticMapComboBoxInstance = MapComboBox;
-
             MaximizeBox = false;
+            Utility.GetMaps();
 
             foreach (GunaTextBox textBox in Utility.GetAll(this, typeof(GunaTextBox)))
                 textBox.ScrollToCaret();
-
-            Utility.GetMaps();
         }
 
         /// <summary>
@@ -40,7 +41,7 @@ namespace CallofDuty4CompileTools
         /// </summary>
         /// <param name="sender">The Object which triggered the event.</param>
         /// <param name="e">The event which has been triggered.</param>
-        public void onChange(object sender, EventArgs e)
+        public void OnChange(object sender, EventArgs e)
         {
             if (MapComboBox.SelectedItem != null)
                 SaveSettingsCSV(MapComboBox.SelectedItem.ToString());
@@ -56,19 +57,20 @@ namespace CallofDuty4CompileTools
 
         private void OptionsButton_Click(object sender, EventArgs e)
         {
-            // TODO: Open the Options Menu
-            // For now I just show the root path popup so we can test
-            RootPathPopupMenu RootPathPopup = new RootPathPopupMenu();
+            // TODO: Create Options/Preferences UserControl
             Popup.Show();
             RootPathPopup.Show();
         }
 
-        private void RootPathButton_Click(object sender, EventArgs e)
+        private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RootPathPopupMenu RootPathPopup = new RootPathPopupMenu();
-            Popup.Show();
-            RootPathPopup.Show();
+            // TODO: Show About UserControlClass
+            // Github
+            // Version
         }
+
+        private void HelpToolStripMenuItem_Click(object sender, EventArgs e) =>
+            Process.Start("https://docs.raid-gaming.net/");
 
         private void RefreshMapsButton_Click(object sender, EventArgs e)
         {
@@ -342,6 +344,23 @@ namespace CallofDuty4CompileTools
 
             else
                 FormConsole.WriteOutputLn("Warning: Couldn't find file \'" + SettingsFileName + ".settings" + "\'", Color.Yellow);
+        }
+
+        private void UpdateCSVButton_Click(object sender, EventArgs e)
+        {
+            if(StaticMapComboBoxInstance.SelectedIndex > -1)
+            {
+                string mapName = StaticMapComboBoxInstance.SelectedItem.ToString();
+                string path = Utility.GetRootLocation() + @"zone_source\" +
+                    mapName.Substring(0, mapName.Length - 4) + ".csv";
+
+                if (File.Exists(path))
+                    Process.Start(path);
+                else
+                    StaticConsoleInstance.WriteOutputLn("Warning: Couldn't find file \'" + path + "\'", Color.Yellow);
+            }
+            else
+                StaticConsoleInstance.WriteOutputLn("Warning: No map selected, please choose a map!\n", Color.Yellow);
         }
     }
 }
