@@ -1,8 +1,10 @@
 ﻿using Microsoft.Win32;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace CallofDuty4CompileTools
@@ -68,14 +70,12 @@ namespace CallofDuty4CompileTools
                 Main.StaticConsoleInstance.WriteOutputLn(workingDirectory + " not Found! Make sure you've specified your game's root path, and installed the Call of Duty 4 Mod Tools!", Color.Red);
         }
 
-        //public static void OnPaint(object sender, PaintEventArgs e)
-        //{
-            
-        //}
-    }
+        public static IEnumerable<Control> GetAll(Control control, Type type)
+        {
+            var controls = control.Controls.Cast<Control>();
 
-    //public class CustomFormConsole : FConsole
-    //{
-        
-    //}
+            return controls.SelectMany(ctrl => GetAll(ctrl, type))
+                .Concat(controls).Where(c => c.GetType() == type);
+        }
+    }
 }

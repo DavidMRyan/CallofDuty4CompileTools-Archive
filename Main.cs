@@ -26,7 +26,12 @@ namespace CallofDuty4CompileTools
             CheckForIllegalCrossThreadCalls = false;
             StaticConsoleInstance = FormConsole;
             StaticMapComboBoxInstance = MapComboBox;
+
             MaximizeBox = false;
+
+            foreach (GunaTextBox textBox in Utility.GetAll(this, typeof(GunaTextBox)))
+                textBox.ScrollToCaret();
+
             Utility.GetMaps();
         }
 
