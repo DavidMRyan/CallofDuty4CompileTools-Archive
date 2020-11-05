@@ -130,6 +130,11 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include=".gitignore" />
+    <Content Include="ConsoleControl.dll" />
+    <Content Include="ConsoleControlAPI.dll" />
+    <Content Include="Guna.UI.dll" />
+    <Content Include="src\img\icon.ico" />
     <Content Include="src\img\refresh.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
