@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 
 namespace CallofDuty4CompileTools
 {
-    class RunSelectedMap
+    public static class RunSelectedMap
     {
-        public static Process GameClient = new Process();
+        public static Process GameClient { get; } = new Process();
 
         /// <summary>
         /// Starts the selected map using the game client process.
@@ -36,10 +32,14 @@ namespace CallofDuty4CompileTools
                 string.Format("{0} {1} {2} {3} +devmap {4}", Developer,
                 DeveloperScript, Cheats, Args, MapName.Substring(0, MapName.Length - 4)));
             GameClient.StartInfo.CreateNoWindow = false;
-            GameClient.Start();
 
-            Main.StaticConsoleInstance.WriteOutputLn("Running " + MapName + "\n--------------------------------------------------\n" +
-                Executable + " " + GameClient.StartInfo.Arguments, Color.CornflowerBlue);
+            if (File.Exists(GameClient.StartInfo.FileName))
+                GameClient.Start();
+            else
+                Main.StaticConsoleInstance.WriteOutputLn("Error: " + GameClient.StartInfo.FileName + " not found!", Color.Red);
+
+            Main.StaticConsoleInstance.WriteOutputLn("Running " + MapName + "\n--------------------------------------------------", Color.CornflowerBlue);
+            Main.StaticConsoleInstance.WriteOutputLn(Executable + " " + GameClient.StartInfo.Arguments);
         }
     }
 }

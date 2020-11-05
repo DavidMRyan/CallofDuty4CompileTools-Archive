@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
@@ -6,11 +7,12 @@ using System.Windows.Forms;
 using Guna.UI.WinForms;
 using CallofDuty4CompileTools.src;
 
-
 namespace CallofDuty4CompileTools
 {
     public partial class Main : Form
     {
+        public static Thread Thread { get; } = Thread.CurrentThread;
+
         PopupMenu Popup = new PopupMenu();
         Process BinProcess = new Process();
         public static ConsoleControl.ConsoleControl StaticConsoleInstance;
@@ -19,6 +21,9 @@ namespace CallofDuty4CompileTools
         public Main()
         {
             InitializeComponent();
+            // TODO: Create Thread-Safety rather than
+            // disabling these checks for illegal cross thread calls.
+            CheckForIllegalCrossThreadCalls = false;
             StaticConsoleInstance = FormConsole;
             StaticMapComboBoxInstance = MapComboBox;
             MaximizeBox = false;
@@ -74,7 +79,12 @@ namespace CallofDuty4CompileTools
         private void OpenRadiantButton_Click(object sender, EventArgs e)
         {
             BinProcess.Initialize("CoD4Radiant.exe", Utility.GetRootLocation() + @"bin\");
-            BinProcess.Start();
+
+            if (File.Exists(BinProcess.StartInfo.FileName))
+                BinProcess.Start();
+            else
+                StaticConsoleInstance.WriteOutputLn("Error: " + BinProcess.StartInfo.FileName + " not found!", Color.Red);
+            
         }
 
         /// <summary>
@@ -85,7 +95,11 @@ namespace CallofDuty4CompileTools
         private void OpenASMButton_Click(object sender, EventArgs e)
         {
             BinProcess.Initialize("asset_manager.exe", Utility.GetRootLocation() + @"bin\");
-            BinProcess.Start();
+
+            if (File.Exists(BinProcess.StartInfo.FileName))
+                BinProcess.Start();
+            else
+                StaticConsoleInstance.WriteOutputLn("Error: " + BinProcess.StartInfo.FileName + " not found!", Color.Red);
         }
 
         /// <summary>
@@ -96,7 +110,11 @@ namespace CallofDuty4CompileTools
         private void OpenFXButton_Click(object sender, EventArgs e)
         {
             BinProcess.Initialize("CoD4EffectsEd.exe", Utility.GetRootLocation() + @"bin\");
-            BinProcess.Start();
+
+            if (File.Exists(BinProcess.StartInfo.FileName))
+                BinProcess.Start();
+            else
+                StaticConsoleInstance.WriteOutputLn("Error: " + BinProcess.StartInfo.FileName + " not found!", Color.Red);
         }
 
         /// <summary>
@@ -154,8 +172,9 @@ namespace CallofDuty4CompileTools
                 return;
             }
 
-            CompileBSP.Start(BSPPath, MapLocation, Utility.GetRootLocation(), MapName, BSPArgs,
-                LightArgs, CompileBSPCheckBox.Checked, CompileLightingCheckBox.Checked, CompilePathsCheckBox.Checked);
+            CompileBSP.Thread = new Thread(() => CompileBSP.Start(BSPPath, MapLocation, Utility.GetRootLocation(), MapName,
+                BSPArgs, LightArgs, CompileBSPCheckBox.Checked, CompileLightingCheckBox.Checked, CompilePathsCheckBox.Checked));
+            CompileBSP.Thread.Start();
         }
 
         /// <summary>
@@ -177,7 +196,9 @@ namespace CallofDuty4CompileTools
             else
                 isMultiplayerMap = MapComboBox.SelectedItem.ToString().Contains("mp_");
 
-            CompileReflections.Start(Utility.GetRootLocation(), MapName, isMultiplayerMap);
+            CompileReflections.Thread = new Thread(() => CompileReflections.Start(
+                Utility.GetRootLocation(), MapName, isMultiplayerMap));
+            CompileReflections.Thread.Start();
         }
 
         /// <summary>
@@ -193,8 +214,9 @@ namespace CallofDuty4CompileTools
                 return;
             }
 
-            BuildFF.Start(MapComboBox.SelectedIndex > -1 ?
-                Path.GetFileNameWithoutExtension(MapComboBox.SelectedItem.ToString()) : null);
+            BuildFF.Thread = new Thread(() => BuildFF.Start(MapComboBox.SelectedIndex > -1 ?
+                Path.GetFileNameWithoutExtension(MapComboBox.SelectedItem.ToString()) : null));
+            BuildFF.Thread.Start();
         }
 
         /// <summary>

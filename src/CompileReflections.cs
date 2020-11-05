@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
+using System.Drawing;
+using System.IO;
+using System.Threading;
 
 namespace CallofDuty4CompileTools.src
 {
-    class CompileReflections
+    public static class CompileReflections
     {
-        public static Process ToolProcess = new Process();
+        public static Thread Thread { get; set; }
+        public static Process ToolProcess { get; } = new Process();
 
         /// <summary>
         /// This method starts the compile process for the selected map's reflection probes.
@@ -27,7 +26,13 @@ namespace CallofDuty4CompileTools.src
             ToolProcess.StartInfo.Arguments = ExecutableFileName == "mp_tool.exe"
                 ? string.Format("+set fs_gamemode war +set g_gametype war +set r_fullscreen 0 +set loc_warnings 0 +set +set developer 1 +set logfile 2 +set thereisacow 1337 +set sv_pure 0 +set com_introplayed 1 +set useFastFile 0 +set ui_autoContinue 1 +set r_reflectionProbeGenerateExit 1+set com_hunkMegs 512 +set r_reflectionProbeRegenerateAll 1 +set r_dof_enable 0 +set r_zFeather 1 +set sys_smp_allowed 0 +set r_reflectionProbeGenerate 1 +devmap {0}", MapName)
                 : string.Format("+ set r_fullscreen 0 + set loc_warnings 0 + set + set developer 1 + set logfile 2 + set thereisacow 1337 + set com_introplayed 1 + set useFastFile 0 + set ui_autoContinue 1 + set r_reflectionProbeGenerateExit 1 + set com_hunkMegs 512 + set r_reflectionProbeRegenerateAll 1 + set r_dof_enable 0 + set r_zFeather 1 + set sys_smp_allowed 0 + set r_reflectionProbeGenerate 1 + devmap {0}", MapName);
-            ToolProcess.Start();
+
+            if (File.Exists(ToolProcess.StartInfo.FileName))
+                ToolProcess.Start();
+            else
+                Main.StaticConsoleInstance.WriteOutputLn("Error: " + ToolProcess.StartInfo.FileName + " not found!", Color.Red);
+
+            Thread.Abort();
         }
     }
 }

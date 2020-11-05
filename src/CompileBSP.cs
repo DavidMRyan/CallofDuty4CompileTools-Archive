@@ -1,20 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace CallofDuty4CompileTools.src
 {
-    class CompileBSP
+    public static class CompileBSP
     {
-        public static Process CoD4Map = new Process();
-        public static Process CoD4Rad = new Process();
-        public static Process SPTool = new Process();
+        public static Thread Thread { get; set; }
+        public static Process CoD4Map { get; } = new Process();
+        public static Process CoD4Rad { get; } = new Process();
+        public static Process SPTool { get; } = new Process();
 
         /// <summary>
         /// This method starts the compile process for the selected map's '.d3dbsp' file, for use in game.
@@ -28,9 +27,9 @@ namespace CallofDuty4CompileTools.src
         /// <param name="isCompileBSPChecked">Boolean checking if the 'CompileBSPCheckBox' is checked.</param>
         /// <param name="isCompileLightChecked">Boolean checking if the 'CompileLightsCheckBox' is checked</param>
         /// <param name="isCompilePathsChecked">Boolean checking if the 'CompilePathsCheckBox' is checked</param>
-        public static void Start(string BSPPath, string MapSourcePath, string RootPath, string MapName, /*string Multiplayer,*/ string BSPArgs, string LightArgs, bool isCompileBSPChecked, bool isCompileLightChecked, bool isCompilePathsChecked)
+        public static void Start(string BSPPath, string MapSourcePath, string RootPath, string MapName, string BSPArgs,
+            string LightArgs, bool isCompileBSPChecked, bool isCompileLightChecked, bool isCompilePathsChecked)
         {
-            // Handle BSP Compilation
             if (isCompileBSPChecked)
             {
                 if(Main.StaticMapComboBoxInstance.SelectedItem != null)
@@ -46,15 +45,23 @@ namespace CallofDuty4CompileTools.src
                     CoD4Map.StartInfo.RedirectStandardOutput = true;
                     CoD4Map.StartInfo.Arguments = string.Format("-platform pc -loadFrom \"{0}\" {1} \"{2}\"", 
                         MapSourcePath, BSPArgs, Path.GetFileNameWithoutExtension(BSPPath));
-                    CoD4Map.Start();
 
-                    StreamReader Reader = CoD4Map.StandardOutput;
-                    while(!Reader.EndOfStream)
-                        Main.StaticConsoleInstance.WriteOutputLn(Reader.ReadLine());
-                        
-                    Reader.Close();
-                    Reader.Dispose();
-                    CoD4Map.Close();
+                    if (File.Exists(CoD4Map.StartInfo.FileName))
+                    {
+                        CoD4Map.Start();
+
+                        StreamReader Reader = CoD4Map.StandardOutput;
+                        while (!Reader.EndOfStream)
+                            Main.StaticConsoleInstance.WriteOutputLn(Reader.ReadLine());
+
+                        Reader.Close();
+                        Reader.Dispose();
+                        CoD4Map.Close();
+                    }
+                    else
+                        Main.StaticConsoleInstance.WriteOutputLn("Error: " + CoD4Map.StartInfo.FileName + " not found!",Color.Red);
+
+                    
                 }
                 else
                 {
@@ -63,7 +70,6 @@ namespace CallofDuty4CompileTools.src
                 }
             }
 
-            // Handle Light Compilation
             if (isCompileLightChecked)
             {
                 Main.StaticConsoleInstance.WriteOutputLn("\nCompiling Lighting\n--------------------------------------------------", Color.Green);
@@ -80,15 +86,23 @@ namespace CallofDuty4CompileTools.src
                 CoD4Rad.StartInfo.RedirectStandardOutput = true;
                 CoD4Rad.StartInfo.Arguments = string.Format("-platform pc {0} \"{1}\"",
                     LightArgs, Path.GetFileNameWithoutExtension(BSPPath));
-                CoD4Rad.Start();
 
-                StreamReader Reader = CoD4Rad.StandardOutput;
-                while(!Reader.EndOfStream)
-                    Main.StaticConsoleInstance.WriteOutputLn(Reader.ReadLine());
+                if (File.Exists(CoD4Rad.StartInfo.FileName))
+                {
+                    CoD4Rad.Start();
 
-                Reader.Close();
-                Reader.Dispose();
-                CoD4Rad.Close();
+                    StreamReader Reader = CoD4Rad.StandardOutput;
+                    while (!Reader.EndOfStream)
+                        Main.StaticConsoleInstance.WriteOutputLn(Reader.ReadLine());
+
+                    Reader.Close();
+                    Reader.Dispose();
+                    CoD4Rad.Close();
+                }
+                else
+                    Main.StaticConsoleInstance.WriteOutputLn("Error: " + CoD4Rad.StartInfo.FileName + " not found!", Color.Red);
+
+                
             }
 
             string[] DelSearchPatterns = new string[] { ".map", ".d3dprt", ".d3dpoly", ".vclog", ".grid"};
@@ -107,30 +121,36 @@ namespace CallofDuty4CompileTools.src
                     Path.GetFileNameWithoutExtension(MapSourcePath) + ".lin");
             }
 
-            // Handle Path Compiliation
             if(isCompilePathsChecked)
             {
                 Main.StaticConsoleInstance.WriteOutputLn("\nCompiling Paths\n--------------------------------------------------", Color.Green);
                 
-                SPTool.StartInfo.FileName = Utility.GetRootLocation() + @"bin\sp_tool.exe";
+                SPTool.StartInfo.FileName = Utility.GetRootLocation() + @"sp_tool.exe";
                 SPTool.StartInfo.WorkingDirectory = Utility.GetRootLocation();
                 SPTool.StartInfo.CreateNoWindow = true;
                 SPTool.StartInfo.UseShellExecute = false;
                 SPTool.StartInfo.RedirectStandardOutput = true;
                 SPTool.StartInfo.Arguments = string.Format("+set r_fullscreen 0 +set logfile 2 +set monkeytoy 0 " +
                     "+set com_introplayed 1 +set usefastfile 0 +set g_connectpaths 2 +devmap {0}", MapName);
-                SPTool.Start();
 
-                StreamReader Reader = SPTool.StandardOutput;
-                while(!Reader.EndOfStream)
-                    Main.StaticConsoleInstance.WriteOutputLn(Reader.ReadLine());
+                if (File.Exists(SPTool.StartInfo.FileName))
+                {
+                    SPTool.Start();
 
-                Reader.Close();
-                Reader.Dispose();
-                SPTool.Close();
+                    StreamReader Reader = SPTool.StandardOutput;
+                    while (!Reader.EndOfStream)
+                        Main.StaticConsoleInstance.WriteOutputLn(Reader.ReadLine());
+
+                    Reader.Close();
+                    Reader.Dispose();
+                    SPTool.Close();
+                }
+                else
+                    Main.StaticConsoleInstance.WriteOutputLn("Error: " + SPTool.StartInfo.FileName + " not found!", Color.Red); 
             }
 
             Main.StaticConsoleInstance.WriteOutputLn("\nFinished\n--------------------------------------------------\n", Color.Green);
+            Thread.Abort();
         }
     }
 }
