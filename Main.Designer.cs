@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.EnableDeveloperScriptCheckBox = new Guna.UI.WinForms.GunaCheckBox();
             this.CustomCommandLineCheckBox = new Guna.UI.WinForms.GunaCheckBox();
             this.EnableCheatsCheckBox = new Guna.UI.WinForms.GunaCheckBox();
@@ -64,6 +65,15 @@
             this.BlockSizeCheckBox = new Guna.UI.WinForms.GunaCheckBox();
             this.OnlyEntsCheckBox = new Guna.UI.WinForms.GunaCheckBox();
             this.LightingTab = new Manina.Windows.Forms.Tab();
+            this.JitterTextBox = new Guna.UI.WinForms.GunaTextBox();
+            this.BounceFractionTextBox = new Guna.UI.WinForms.GunaTextBox();
+            this.TracesTextBox = new Guna.UI.WinForms.GunaTextBox();
+            this.JitterCheckBox = new Guna.UI.WinForms.GunaCheckBox();
+            this.BounceFractionCheckBox = new Guna.UI.WinForms.GunaCheckBox();
+            this.TracesCheckBox = new Guna.UI.WinForms.GunaCheckBox();
+            this.DumpOptionsCheckBox = new Guna.UI.WinForms.GunaCheckBox();
+            this.NoModelShadowCheckBox = new Guna.UI.WinForms.GunaCheckBox();
+            this.ModelShadowCheckBox = new Guna.UI.WinForms.GunaCheckBox();
             this.VerboseCheckBox = new Guna.UI.WinForms.GunaCheckBox();
             this.ExtraCheckBox = new Guna.UI.WinForms.GunaCheckBox();
             this.CustomLightOptionsTextBox = new Guna.UI.WinForms.GunaTextBox();
@@ -73,15 +83,6 @@
             this.RunTab = new Manina.Windows.Forms.Tab();
             this.gunaSeparator1 = new Guna.UI.WinForms.GunaSeparator();
             this.FormConsole = new ConsoleControl.ConsoleControl();
-            this.ModelShadowCheckBox = new Guna.UI.WinForms.GunaCheckBox();
-            this.DumpOptionsCheckBox = new Guna.UI.WinForms.GunaCheckBox();
-            this.NoModelShadowCheckBox = new Guna.UI.WinForms.GunaCheckBox();
-            this.JitterCheckBox = new Guna.UI.WinForms.GunaCheckBox();
-            this.BounceFractionCheckBox = new Guna.UI.WinForms.GunaCheckBox();
-            this.TracesCheckBox = new Guna.UI.WinForms.GunaCheckBox();
-            this.BounceFractionTextBox = new Guna.UI.WinForms.GunaTextBox();
-            this.TracesTextBox = new Guna.UI.WinForms.GunaTextBox();
-            this.JitterTextBox = new Guna.UI.WinForms.GunaTextBox();
             this.MenuStrip.SuspendLayout();
             this.TabControl.SuspendLayout();
             this.BSPTab.SuspendLayout();
@@ -330,7 +331,7 @@
             this.OpenRadiantButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.OpenRadiantButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.OpenRadiantButton.Name = "OpenRadiantButton";
-            this.OpenRadiantButton.Size = new System.Drawing.Size(180, 22);
+            this.OpenRadiantButton.Size = new System.Drawing.Size(152, 22);
             this.OpenRadiantButton.Text = "Radiant";
             this.OpenRadiantButton.Click += new System.EventHandler(this.OpenRadiantButton_Click);
             // 
@@ -339,7 +340,7 @@
             this.OpenASMButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.OpenASMButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.OpenASMButton.Name = "OpenASMButton";
-            this.OpenASMButton.Size = new System.Drawing.Size(180, 22);
+            this.OpenASMButton.Size = new System.Drawing.Size(152, 22);
             this.OpenASMButton.Text = "Asset Manager";
             this.OpenASMButton.Click += new System.EventHandler(this.OpenASMButton_Click);
             // 
@@ -348,7 +349,7 @@
             this.OpenFXButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.OpenFXButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.OpenFXButton.Name = "OpenFXButton";
-            this.OpenFXButton.Size = new System.Drawing.Size(180, 22);
+            this.OpenFXButton.Size = new System.Drawing.Size(152, 22);
             this.OpenFXButton.Text = "Effects Editor";
             this.OpenFXButton.Click += new System.EventHandler(this.OpenFXButton_Click);
             // 
@@ -365,7 +366,7 @@
             this.OptionsButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.OptionsButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
             this.OptionsButton.Name = "OptionsButton";
-            this.OptionsButton.Size = new System.Drawing.Size(180, 22);
+            this.OptionsButton.Size = new System.Drawing.Size(152, 22);
             this.OptionsButton.Text = "Preferences";
             this.OptionsButton.Click += new System.EventHandler(this.OptionsButton_Click);
             // 
@@ -401,9 +402,9 @@
             this.BSPTab.Controls.Add(this.BlockSizeCheckBox);
             this.BSPTab.Controls.Add(this.OnlyEntsCheckBox);
             this.BSPTab.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
-            this.BSPTab.Location = new System.Drawing.Point(1, 21);
+            this.BSPTab.Location = new System.Drawing.Point(0, 0);
             this.BSPTab.Name = "BSPTab";
-            this.BSPTab.Size = new System.Drawing.Size(346, 231);
+            this.BSPTab.Size = new System.Drawing.Size(0, 0);
             this.BSPTab.Text = "BSP";
             // 
             // CompilePathsCheckBox
@@ -523,9 +524,9 @@
             this.CustomCommandLineLabel.AutoSize = true;
             this.CustomCommandLineLabel.Location = new System.Drawing.Point(87, 186);
             this.CustomCommandLineLabel.Name = "CustomCommandLineLabel";
-            this.CustomCommandLineLabel.Size = new System.Drawing.Size(174, 13);
+            this.CustomCommandLineLabel.Size = new System.Drawing.Size(165, 13);
             this.CustomCommandLineLabel.TabIndex = 61;
-            this.CustomCommandLineLabel.Text = "Custom Command Line Arguements";
+            this.CustomCommandLineLabel.Text = "Custom BSP Compile Arguements";
             // 
             // DebugLightmapsCheckBox
             // 
@@ -606,10 +607,157 @@
             this.LightingTab.Controls.Add(this.label2);
             this.LightingTab.Controls.Add(this.FastCheckBox);
             this.LightingTab.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
-            this.LightingTab.Location = new System.Drawing.Point(1, 21);
+            this.LightingTab.Location = new System.Drawing.Point(0, 0);
             this.LightingTab.Name = "LightingTab";
-            this.LightingTab.Size = new System.Drawing.Size(346, 231);
+            this.LightingTab.Size = new System.Drawing.Size(0, 0);
             this.LightingTab.Text = "Lighting";
+            // 
+            // JitterTextBox
+            // 
+            this.JitterTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.JitterTextBox.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.JitterTextBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.JitterTextBox.BorderSize = 1;
+            this.JitterTextBox.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.JitterTextBox.FocusedBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.JitterTextBox.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.JitterTextBox.FocusedForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
+            this.JitterTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.JitterTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
+            this.JitterTextBox.Location = new System.Drawing.Point(270, 67);
+            this.JitterTextBox.Name = "JitterTextBox";
+            this.JitterTextBox.PasswordChar = '\0';
+            this.JitterTextBox.Size = new System.Drawing.Size(69, 26);
+            this.JitterTextBox.TabIndex = 81;
+            this.JitterTextBox.TextChanged += new System.EventHandler(this.onChange);
+            // 
+            // BounceFractionTextBox
+            // 
+            this.BounceFractionTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.BounceFractionTextBox.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.BounceFractionTextBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.BounceFractionTextBox.BorderSize = 1;
+            this.BounceFractionTextBox.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.BounceFractionTextBox.FocusedBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.BounceFractionTextBox.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.BounceFractionTextBox.FocusedForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
+            this.BounceFractionTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.BounceFractionTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
+            this.BounceFractionTextBox.Location = new System.Drawing.Point(270, 35);
+            this.BounceFractionTextBox.Name = "BounceFractionTextBox";
+            this.BounceFractionTextBox.PasswordChar = '\0';
+            this.BounceFractionTextBox.Size = new System.Drawing.Size(69, 26);
+            this.BounceFractionTextBox.TabIndex = 80;
+            this.BounceFractionTextBox.TextChanged += new System.EventHandler(this.onChange);
+            // 
+            // TracesTextBox
+            // 
+            this.TracesTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.TracesTextBox.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.TracesTextBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.TracesTextBox.BorderSize = 1;
+            this.TracesTextBox.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.TracesTextBox.FocusedBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.TracesTextBox.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.TracesTextBox.FocusedForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
+            this.TracesTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.TracesTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
+            this.TracesTextBox.Location = new System.Drawing.Point(270, 3);
+            this.TracesTextBox.Name = "TracesTextBox";
+            this.TracesTextBox.PasswordChar = '\0';
+            this.TracesTextBox.Size = new System.Drawing.Size(69, 26);
+            this.TracesTextBox.TabIndex = 79;
+            this.TracesTextBox.TextChanged += new System.EventHandler(this.onChange);
+            // 
+            // JitterCheckBox
+            // 
+            this.JitterCheckBox.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.JitterCheckBox.CheckedOffColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.JitterCheckBox.CheckedOnColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.JitterCheckBox.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
+            this.JitterCheckBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
+            this.JitterCheckBox.Location = new System.Drawing.Point(167, 70);
+            this.JitterCheckBox.Name = "JitterCheckBox";
+            this.JitterCheckBox.Radius = 0;
+            this.JitterCheckBox.Size = new System.Drawing.Size(54, 20);
+            this.JitterCheckBox.TabIndex = 78;
+            this.JitterCheckBox.Text = "Jitter";
+            this.JitterCheckBox.CheckedChanged += new System.EventHandler(this.onChange);
+            // 
+            // BounceFractionCheckBox
+            // 
+            this.BounceFractionCheckBox.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.BounceFractionCheckBox.CheckedOffColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.BounceFractionCheckBox.CheckedOnColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.BounceFractionCheckBox.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
+            this.BounceFractionCheckBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
+            this.BounceFractionCheckBox.Location = new System.Drawing.Point(167, 38);
+            this.BounceFractionCheckBox.Name = "BounceFractionCheckBox";
+            this.BounceFractionCheckBox.Radius = 0;
+            this.BounceFractionCheckBox.Size = new System.Drawing.Size(112, 20);
+            this.BounceFractionCheckBox.TabIndex = 77;
+            this.BounceFractionCheckBox.Text = "Bounce Fraction";
+            this.BounceFractionCheckBox.CheckedChanged += new System.EventHandler(this.onChange);
+            // 
+            // TracesCheckBox
+            // 
+            this.TracesCheckBox.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.TracesCheckBox.CheckedOffColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.TracesCheckBox.CheckedOnColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.TracesCheckBox.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
+            this.TracesCheckBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
+            this.TracesCheckBox.Location = new System.Drawing.Point(167, 6);
+            this.TracesCheckBox.Name = "TracesCheckBox";
+            this.TracesCheckBox.Radius = 0;
+            this.TracesCheckBox.Size = new System.Drawing.Size(64, 20);
+            this.TracesCheckBox.TabIndex = 76;
+            this.TracesCheckBox.Text = "Traces";
+            this.TracesCheckBox.CheckedChanged += new System.EventHandler(this.onChange);
+            // 
+            // DumpOptionsCheckBox
+            // 
+            this.DumpOptionsCheckBox.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.DumpOptionsCheckBox.CheckedOffColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.DumpOptionsCheckBox.CheckedOnColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.DumpOptionsCheckBox.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
+            this.DumpOptionsCheckBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
+            this.DumpOptionsCheckBox.Location = new System.Drawing.Point(3, 136);
+            this.DumpOptionsCheckBox.Name = "DumpOptionsCheckBox";
+            this.DumpOptionsCheckBox.Radius = 0;
+            this.DumpOptionsCheckBox.Size = new System.Drawing.Size(102, 20);
+            this.DumpOptionsCheckBox.TabIndex = 75;
+            this.DumpOptionsCheckBox.Text = "Dump Options";
+            this.DumpOptionsCheckBox.CheckedChanged += new System.EventHandler(this.onChange);
+            // 
+            // NoModelShadowCheckBox
+            // 
+            this.NoModelShadowCheckBox.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.NoModelShadowCheckBox.CheckedOffColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.NoModelShadowCheckBox.CheckedOnColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.NoModelShadowCheckBox.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
+            this.NoModelShadowCheckBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
+            this.NoModelShadowCheckBox.Location = new System.Drawing.Point(3, 110);
+            this.NoModelShadowCheckBox.Name = "NoModelShadowCheckBox";
+            this.NoModelShadowCheckBox.Radius = 0;
+            this.NoModelShadowCheckBox.Size = new System.Drawing.Size(122, 20);
+            this.NoModelShadowCheckBox.TabIndex = 74;
+            this.NoModelShadowCheckBox.Text = "No Model Shadow";
+            this.NoModelShadowCheckBox.CheckedChanged += new System.EventHandler(this.onChange);
+            // 
+            // ModelShadowCheckBox
+            // 
+            this.ModelShadowCheckBox.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.ModelShadowCheckBox.CheckedOffColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.ModelShadowCheckBox.CheckedOnColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.ModelShadowCheckBox.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
+            this.ModelShadowCheckBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
+            this.ModelShadowCheckBox.Location = new System.Drawing.Point(3, 84);
+            this.ModelShadowCheckBox.Name = "ModelShadowCheckBox";
+            this.ModelShadowCheckBox.Radius = 0;
+            this.ModelShadowCheckBox.Size = new System.Drawing.Size(105, 20);
+            this.ModelShadowCheckBox.TabIndex = 73;
+            this.ModelShadowCheckBox.Text = "Model Shadow";
+            this.ModelShadowCheckBox.CheckedChanged += new System.EventHandler(this.onChange);
             // 
             // VerboseCheckBox
             // 
@@ -673,9 +821,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(87, 186);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(174, 13);
+            this.label2.Size = new System.Drawing.Size(167, 13);
             this.label2.TabIndex = 68;
-            this.label2.Text = "Custom Command Line Arguements";
+            this.label2.Text = "Custom Light Compile Arguements";
             // 
             // FastCheckBox
             // 
@@ -728,153 +876,6 @@
             this.FormConsole.Size = new System.Drawing.Size(473, 450);
             this.FormConsole.TabIndex = 64;
             // 
-            // ModelShadowCheckBox
-            // 
-            this.ModelShadowCheckBox.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.ModelShadowCheckBox.CheckedOffColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.ModelShadowCheckBox.CheckedOnColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.ModelShadowCheckBox.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
-            this.ModelShadowCheckBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
-            this.ModelShadowCheckBox.Location = new System.Drawing.Point(3, 84);
-            this.ModelShadowCheckBox.Name = "ModelShadowCheckBox";
-            this.ModelShadowCheckBox.Radius = 0;
-            this.ModelShadowCheckBox.Size = new System.Drawing.Size(105, 20);
-            this.ModelShadowCheckBox.TabIndex = 73;
-            this.ModelShadowCheckBox.Text = "Model Shadow";
-            this.ModelShadowCheckBox.CheckedChanged += new System.EventHandler(this.onChange);
-            // 
-            // DumpOptionsCheckBox
-            // 
-            this.DumpOptionsCheckBox.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.DumpOptionsCheckBox.CheckedOffColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.DumpOptionsCheckBox.CheckedOnColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.DumpOptionsCheckBox.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
-            this.DumpOptionsCheckBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
-            this.DumpOptionsCheckBox.Location = new System.Drawing.Point(3, 136);
-            this.DumpOptionsCheckBox.Name = "DumpOptionsCheckBox";
-            this.DumpOptionsCheckBox.Radius = 0;
-            this.DumpOptionsCheckBox.Size = new System.Drawing.Size(102, 20);
-            this.DumpOptionsCheckBox.TabIndex = 75;
-            this.DumpOptionsCheckBox.Text = "Dump Options";
-            this.DumpOptionsCheckBox.CheckedChanged += new System.EventHandler(this.onChange);
-            // 
-            // NoModelShadowCheckBox
-            // 
-            this.NoModelShadowCheckBox.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.NoModelShadowCheckBox.CheckedOffColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.NoModelShadowCheckBox.CheckedOnColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.NoModelShadowCheckBox.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
-            this.NoModelShadowCheckBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
-            this.NoModelShadowCheckBox.Location = new System.Drawing.Point(3, 110);
-            this.NoModelShadowCheckBox.Name = "NoModelShadowCheckBox";
-            this.NoModelShadowCheckBox.Radius = 0;
-            this.NoModelShadowCheckBox.Size = new System.Drawing.Size(122, 20);
-            this.NoModelShadowCheckBox.TabIndex = 74;
-            this.NoModelShadowCheckBox.Text = "No Model Shadow";
-            this.NoModelShadowCheckBox.CheckedChanged += new System.EventHandler(this.onChange);
-            // 
-            // JitterCheckBox
-            // 
-            this.JitterCheckBox.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.JitterCheckBox.CheckedOffColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.JitterCheckBox.CheckedOnColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.JitterCheckBox.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
-            this.JitterCheckBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
-            this.JitterCheckBox.Location = new System.Drawing.Point(167, 70);
-            this.JitterCheckBox.Name = "JitterCheckBox";
-            this.JitterCheckBox.Radius = 0;
-            this.JitterCheckBox.Size = new System.Drawing.Size(54, 20);
-            this.JitterCheckBox.TabIndex = 78;
-            this.JitterCheckBox.Text = "Jitter";
-            this.JitterCheckBox.CheckedChanged += new System.EventHandler(this.onChange);
-            // 
-            // BounceFractionCheckBox
-            // 
-            this.BounceFractionCheckBox.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.BounceFractionCheckBox.CheckedOffColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.BounceFractionCheckBox.CheckedOnColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.BounceFractionCheckBox.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
-            this.BounceFractionCheckBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
-            this.BounceFractionCheckBox.Location = new System.Drawing.Point(167, 38);
-            this.BounceFractionCheckBox.Name = "BounceFractionCheckBox";
-            this.BounceFractionCheckBox.Radius = 0;
-            this.BounceFractionCheckBox.Size = new System.Drawing.Size(112, 20);
-            this.BounceFractionCheckBox.TabIndex = 77;
-            this.BounceFractionCheckBox.Text = "Bounce Fraction";
-            this.BounceFractionCheckBox.CheckedChanged += new System.EventHandler(this.onChange);
-            // 
-            // TracesCheckBox
-            // 
-            this.TracesCheckBox.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.TracesCheckBox.CheckedOffColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.TracesCheckBox.CheckedOnColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.TracesCheckBox.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
-            this.TracesCheckBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
-            this.TracesCheckBox.Location = new System.Drawing.Point(167, 6);
-            this.TracesCheckBox.Name = "TracesCheckBox";
-            this.TracesCheckBox.Radius = 0;
-            this.TracesCheckBox.Size = new System.Drawing.Size(64, 20);
-            this.TracesCheckBox.TabIndex = 76;
-            this.TracesCheckBox.Text = "Traces";
-            this.TracesCheckBox.CheckedChanged += new System.EventHandler(this.onChange);
-            // 
-            // BounceFractionTextBox
-            // 
-            this.BounceFractionTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.BounceFractionTextBox.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.BounceFractionTextBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.BounceFractionTextBox.BorderSize = 1;
-            this.BounceFractionTextBox.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.BounceFractionTextBox.FocusedBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.BounceFractionTextBox.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.BounceFractionTextBox.FocusedForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
-            this.BounceFractionTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.BounceFractionTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
-            this.BounceFractionTextBox.Location = new System.Drawing.Point(270, 35);
-            this.BounceFractionTextBox.Name = "BounceFractionTextBox";
-            this.BounceFractionTextBox.PasswordChar = '\0';
-            this.BounceFractionTextBox.Size = new System.Drawing.Size(69, 26);
-            this.BounceFractionTextBox.TabIndex = 80;
-            this.BounceFractionTextBox.TextChanged += new System.EventHandler(this.onChange);
-            // 
-            // TracesTextBox
-            // 
-            this.TracesTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.TracesTextBox.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.TracesTextBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.TracesTextBox.BorderSize = 1;
-            this.TracesTextBox.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.TracesTextBox.FocusedBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.TracesTextBox.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.TracesTextBox.FocusedForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
-            this.TracesTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.TracesTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
-            this.TracesTextBox.Location = new System.Drawing.Point(270, 3);
-            this.TracesTextBox.Name = "TracesTextBox";
-            this.TracesTextBox.PasswordChar = '\0';
-            this.TracesTextBox.Size = new System.Drawing.Size(69, 26);
-            this.TracesTextBox.TabIndex = 79;
-            this.TracesTextBox.TextChanged += new System.EventHandler(this.onChange);
-            // 
-            // JitterTextBox
-            // 
-            this.JitterTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.JitterTextBox.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.JitterTextBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.JitterTextBox.BorderSize = 1;
-            this.JitterTextBox.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.JitterTextBox.FocusedBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.JitterTextBox.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.JitterTextBox.FocusedForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
-            this.JitterTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.JitterTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
-            this.JitterTextBox.Location = new System.Drawing.Point(270, 67);
-            this.JitterTextBox.Name = "JitterTextBox";
-            this.JitterTextBox.PasswordChar = '\0';
-            this.JitterTextBox.Size = new System.Drawing.Size(69, 26);
-            this.JitterTextBox.TabIndex = 81;
-            this.JitterTextBox.TextChanged += new System.EventHandler(this.onChange);
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -894,6 +895,7 @@
             this.Controls.Add(this.RefreshMapsButton);
             this.Controls.Add(this.MenuStrip);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.MenuStrip;
             this.Name = "Main";
             this.Text = "Call of Duty 4 Compile Tools";
