@@ -34,9 +34,9 @@
             // optionsPopupMenu1
             // 
             this.optionsPopupMenu1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            this.optionsPopupMenu1.Location = new System.Drawing.Point(-5, -30);
+            this.optionsPopupMenu1.Location = new System.Drawing.Point(-6, -30);
             this.optionsPopupMenu1.Name = "optionsPopupMenu1";
-            this.optionsPopupMenu1.Size = new System.Drawing.Size(401, 196);
+            this.optionsPopupMenu1.Size = new System.Drawing.Size(391, 192);
             this.optionsPopupMenu1.TabIndex = 0;
             // 
             // PopupMenu

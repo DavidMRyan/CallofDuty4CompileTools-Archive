@@ -6,6 +6,7 @@ namespace CallofDuty4CompileTools
     {
         public static Form PopUp;
 
+        // TODO: Hide the component rather than disposing on Closing
         public PopupMenu()
         {
             InitializeComponent();
