@@ -85,11 +85,15 @@
             this.RunTab = new Manina.Windows.Forms.Tab();
             this.gunaSeparator1 = new Guna.UI.WinForms.GunaSeparator();
             this.FormConsole = new ConsoleControl.ConsoleControl();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.MenuStrip.SuspendLayout();
             this.TabControl.SuspendLayout();
             this.BSPTab.SuspendLayout();
             this.LightingTab.SuspendLayout();
             this.RunTab.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // EnableDeveloperScriptCheckBox
@@ -188,7 +192,8 @@
             this.ClearConsoleLinkLabel.AutoSize = true;
             this.ClearConsoleLinkLabel.BackColor = System.Drawing.Color.Transparent;
             this.ClearConsoleLinkLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.ClearConsoleLinkLabel.LinkColor = System.Drawing.SystemColors.Window;
+            this.ClearConsoleLinkLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
+            this.ClearConsoleLinkLabel.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
             this.ClearConsoleLinkLabel.Location = new System.Drawing.Point(768, 481);
             this.ClearConsoleLinkLabel.Name = "ClearConsoleLinkLabel";
             this.ClearConsoleLinkLabel.Size = new System.Drawing.Size(84, 15);
@@ -206,7 +211,7 @@
             this.RunSelectedMapButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
             this.RunSelectedMapButton.Location = new System.Drawing.Point(14, 439);
             this.RunSelectedMapButton.Name = "RunSelectedMapButton";
-            this.RunSelectedMapButton.Size = new System.Drawing.Size(348, 38);
+            this.RunSelectedMapButton.Size = new System.Drawing.Size(350, 38);
             this.RunSelectedMapButton.TabIndex = 52;
             this.RunSelectedMapButton.Text = "Run Selected Map";
             this.RunSelectedMapButton.UseVisualStyleBackColor = false;
@@ -220,7 +225,7 @@
             this.UpdateCSVButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
             this.UpdateCSVButton.Location = new System.Drawing.Point(14, 406);
             this.UpdateCSVButton.Name = "UpdateCSVButton";
-            this.UpdateCSVButton.Size = new System.Drawing.Size(348, 23);
+            this.UpdateCSVButton.Size = new System.Drawing.Size(350, 23);
             this.UpdateCSVButton.TabIndex = 51;
             this.UpdateCSVButton.Text = "Update CSV";
             this.UpdateCSVButton.UseVisualStyleBackColor = false;
@@ -234,7 +239,7 @@
             this.BuildFFButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
             this.BuildFFButton.Location = new System.Drawing.Point(14, 377);
             this.BuildFFButton.Name = "BuildFFButton";
-            this.BuildFFButton.Size = new System.Drawing.Size(348, 23);
+            this.BuildFFButton.Size = new System.Drawing.Size(350, 23);
             this.BuildFFButton.TabIndex = 50;
             this.BuildFFButton.Text = "Build Fast File";
             this.BuildFFButton.UseVisualStyleBackColor = false;
@@ -248,7 +253,7 @@
             this.CompileReflectionsButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
             this.CompileReflectionsButton.Location = new System.Drawing.Point(14, 348);
             this.CompileReflectionsButton.Name = "CompileReflectionsButton";
-            this.CompileReflectionsButton.Size = new System.Drawing.Size(348, 23);
+            this.CompileReflectionsButton.Size = new System.Drawing.Size(350, 23);
             this.CompileReflectionsButton.TabIndex = 49;
             this.CompileReflectionsButton.Text = "Compile Reflections";
             this.CompileReflectionsButton.UseVisualStyleBackColor = false;
@@ -262,7 +267,7 @@
             this.CompileBSPButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
             this.CompileBSPButton.Location = new System.Drawing.Point(14, 319);
             this.CompileBSPButton.Name = "CompileBSPButton";
-            this.CompileBSPButton.Size = new System.Drawing.Size(348, 23);
+            this.CompileBSPButton.Size = new System.Drawing.Size(350, 23);
             this.CompileBSPButton.TabIndex = 48;
             this.CompileBSPButton.Text = "Compile BSP";
             this.CompileBSPButton.UseVisualStyleBackColor = false;
@@ -395,13 +400,14 @@
             // 
             // TabControl
             // 
+            this.TabControl.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TabControl.Controls.Add(this.BSPTab);
             this.TabControl.Controls.Add(this.LightingTab);
             this.TabControl.Controls.Add(this.RunTab);
             this.TabControl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
-            this.TabControl.Location = new System.Drawing.Point(14, 60);
+            this.TabControl.Location = new System.Drawing.Point(1, 1);
             this.TabControl.Name = "TabControl";
-            this.TabControl.SelectedIndex = 2;
+            this.TabControl.SelectedIndex = 0;
             this.TabControl.Size = new System.Drawing.Size(348, 253);
             this.TabControl.TabIndex = 62;
             this.TabControl.Tabs.Add(this.BSPTab);
@@ -425,9 +431,9 @@
             this.BSPTab.Controls.Add(this.BlockSizeCheckBox);
             this.BSPTab.Controls.Add(this.OnlyEntsCheckBox);
             this.BSPTab.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
-            this.BSPTab.Location = new System.Drawing.Point(0, 0);
+            this.BSPTab.Location = new System.Drawing.Point(1, 21);
             this.BSPTab.Name = "BSPTab";
-            this.BSPTab.Size = new System.Drawing.Size(0, 0);
+            this.BSPTab.Size = new System.Drawing.Size(346, 231);
             this.BSPTab.Text = "BSP";
             // 
             // CompilePathsCheckBox
@@ -889,15 +895,32 @@
             // FormConsole
             // 
             this.FormConsole.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.FormConsole.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.FormConsole.Font = new System.Drawing.Font("Hack", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormConsole.IsInputEnabled = true;
-            this.FormConsole.Location = new System.Drawing.Point(379, 28);
+            this.FormConsole.Location = new System.Drawing.Point(1, 1);
             this.FormConsole.Name = "FormConsole";
             this.FormConsole.SendKeyboardCommandsToProcess = false;
             this.FormConsole.ShowDiagnostics = false;
-            this.FormConsole.Size = new System.Drawing.Size(473, 450);
+            this.FormConsole.Size = new System.Drawing.Size(470, 450);
             this.FormConsole.TabIndex = 64;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.panel1.Controls.Add(this.FormConsole);
+            this.panel1.Location = new System.Drawing.Point(380, 28);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(472, 452);
+            this.panel1.TabIndex = 65;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.panel2.Controls.Add(this.TabControl);
+            this.panel2.Location = new System.Drawing.Point(14, 60);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(350, 255);
+            this.panel2.TabIndex = 61;
             // 
             // Main
             // 
@@ -905,8 +928,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.ClientSize = new System.Drawing.Size(855, 500);
-            this.Controls.Add(this.FormConsole);
-            this.Controls.Add(this.TabControl);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.ClearConsoleLinkLabel);
             this.Controls.Add(this.MapComboBox);
             this.Controls.Add(this.MapSelectionLabel);
@@ -931,6 +954,8 @@
             this.LightingTab.PerformLayout();
             this.RunTab.ResumeLayout(false);
             this.RunTab.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -993,6 +1018,8 @@
         private Guna.UI.WinForms.GunaCheckBox ModelShadowCheckBox;
         private System.Windows.Forms.ToolStripMenuItem AboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem HelpToolStripMenuItem;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
     }
 }
 

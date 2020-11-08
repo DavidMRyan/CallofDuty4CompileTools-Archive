@@ -11,14 +11,13 @@ namespace CallofDuty4CompileTools
 {
     public partial class Main : Form
     {
-        private static RootPathPopupMenu RootPathPopup { get; } = new RootPathPopupMenu();
-        private static PopupMenu Popup { get; } = new PopupMenu();
-
         public static ConsoleControl.ConsoleControl StaticConsoleInstance { get; set; }
         public static GunaComboBox StaticMapComboBoxInstance { get; set; }
         public static Thread Thread { get; } = Thread.CurrentThread;
         public static Process BinProcess { get; } = new Process();
 
+        private static RootPathPopupMenu RootPathPopup { get; } = new RootPathPopupMenu();
+        private static PopupMenu Popup { get; } = new PopupMenu();
 
         public Main()
         {
@@ -31,6 +30,7 @@ namespace CallofDuty4CompileTools
             StaticMapComboBoxInstance = MapComboBox;
             MaximizeBox = false;
             Utility.GetMaps();
+            
 
             foreach (GunaTextBox textBox in Utility.GetAll(this, typeof(GunaTextBox)))
                 textBox.ScrollToCaret();
@@ -226,6 +226,24 @@ namespace CallofDuty4CompileTools
             BuildFF.Thread.Start();
         }
 
+        private void UpdateCSVButton_Click(object sender, EventArgs e)
+        {
+            if (StaticMapComboBoxInstance.SelectedIndex > -1)
+            {
+                string mapName = StaticMapComboBoxInstance.SelectedItem.ToString();
+                string path = Utility.GetRootLocation() + @"zone_source\" +
+                    mapName.Substring(0, mapName.Length - 4) + ".csv";
+
+                // TODO: Add a way for user to allow creation of zone files if they're not found.
+                if (File.Exists(path))
+                    Process.Start(path);
+                else
+                    StaticConsoleInstance.WriteOutputLn("Warning: Couldn't find file \'" + path + "\'", Color.Yellow);
+            }
+            else
+                StaticConsoleInstance.WriteOutputLn("Warning: No map selected, please choose a map!\n", Color.Yellow);
+        }
+
         /// <summary>
         /// This method saves the settings for the selected map to 'MapName.settings', which can be located in @'../Call of Duty 4/bin/CoD4CompileTools/'.
         /// </summary>
@@ -344,23 +362,6 @@ namespace CallofDuty4CompileTools
 
             else
                 FormConsole.WriteOutputLn("Warning: Couldn't find file \'" + SettingsFileName + ".settings" + "\'", Color.Yellow);
-        }
-
-        private void UpdateCSVButton_Click(object sender, EventArgs e)
-        {
-            if(StaticMapComboBoxInstance.SelectedIndex > -1)
-            {
-                string mapName = StaticMapComboBoxInstance.SelectedItem.ToString();
-                string path = Utility.GetRootLocation() + @"zone_source\" +
-                    mapName.Substring(0, mapName.Length - 4) + ".csv";
-
-                if (File.Exists(path))
-                    Process.Start(path);
-                else
-                    StaticConsoleInstance.WriteOutputLn("Warning: Couldn't find file \'" + path + "\'", Color.Yellow);
-            }
-            else
-                StaticConsoleInstance.WriteOutputLn("Warning: No map selected, please choose a map!\n", Color.Yellow);
         }
     }
 }
